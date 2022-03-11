@@ -8,7 +8,7 @@ PORT = 5000
 
 CONNECTION_URL = mongodb+srv://'username':'password'@cluster0.mw5kc.mongodb.net/seng401?retryWrites=true&w=majority
 
-JWT_SECRET = (you can create your own JWT hash key online)
+JWT_SECRET = (we will get our JWT hash key to make sure everyone has the same key)
 
 ## How to run
 
