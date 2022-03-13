@@ -1,35 +1,35 @@
-import express from "express";
-import jwt from "jsonwebtoken";
+import { express } from "express";
+import Post from "../models/post.js"
 
-import { registerUser } from "../controllers/registerUser.js";
-import { login } from "../controllers/login.js";
+
+import { getAllPosts, getPostByID } from "../controllers/getPosts.js"
 
 const router = express.Router();
 
-function verifyJWT(req, res, next) {
-  const token = req.headers["x-access-token"]?.split(" ")[1];
+router.get("/posts", getAllPosts);
 
-  if (token) {
-    jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
-      if (err)
-        return res.json({
-          isLoggedIn: false,
-          message: "Failed To Authenticate",
-        });
-      req.user = {};
-      req.user.id = decoded.id;
-      req.user.username = decoded.username;
-      next();
-    });
-  } else {
-    res.json({ message: "Incorrect Token Given", isLoggedIn: false });
-  }
-}
+router.get("/posts/:id", getPostByID);
 
-router.post("/register", registerUser);
-router.post("/login", login);
-router.get("/isUserAuth", verifyJWT, (req, res) => {
-  res.json({ isLoggedIn: true, username: req.user.username });
-});
+/*router.post("/posts", async (req, res) => {
+    const post = new Post({
+        title: req.body.title,
+        content: req.body.content,
+        tags: req.body.tags,
+        fame: req.body.fame,
+        lame: req.body.lame,
+    })
+    await post.save()
+    res.send(post)
+})*/
 
-export default router;
+router.delete("/posts/:id", async (req, res) => {
+	try {
+		await Post.deleteOne({ _id: req.params.id })
+		res.status(204).send()
+	} catch {
+		res.status(404)
+		res.send({ error: "Post doesn't exist!" })
+	}
+})
+
+module.exports = router
