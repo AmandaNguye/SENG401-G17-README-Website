@@ -1,21 +1,14 @@
-const express = require("express")
-const Post = require("./model/Post")
-const router = express.Router()
+import { express } from "express";
+import Post from "../models/post.js"
 
-router.get("/posts", async (req, res) => {
-    const posts = await Post.find()
-    res.send(posts)
-})
 
-router.get("/posts/:id", async (req, res) => {
-	try {
-		const post = await Post.findOne({ _id: req.params.id })
-		res.send(post)
-	} catch {
-		res.status(404)
-		res.send({ error: "Post doesn't exist!" })
-	}
-})
+import { getAllPosts, getPostByID } from "../controllers/getPosts.js"
+
+const router = express.Router();
+
+router.get("/posts", getAllPosts);
+
+router.get("/posts/:id", getPostByID);
 
 /*router.post("/posts", async (req, res) => {
     const post = new Post({
