@@ -1,35 +1,21 @@
 import { express } from "express";
-import Post from "../models/post.js"
 
 
-import { getAllPosts, getPostByID } from "../controllers/getPosts.js"
+import { getPostByID, findPosts } from "../controllers/getPosts.js"
+import { createPost } from "../controllers/createPost.js"
+import { deletePost } from "../controllers/deletePost.js"
 
 const router = express.Router();
 
-router.get("/posts", getAllPosts);
+
+//TODO: Combine get all posts and find posts
+//If there is no query then get all
+router.get("/posts", findPosts);
 
 router.get("/posts/:id", getPostByID);
 
-/*router.post("/posts", async (req, res) => {
-    const post = new Post({
-        title: req.body.title,
-        content: req.body.content,
-        tags: req.body.tags,
-        fame: req.body.fame,
-        lame: req.body.lame,
-    })
-    await post.save()
-    res.send(post)
-})*/
+router.post("/posts", createPost);
 
-router.delete("/posts/:id", async (req, res) => {
-	try {
-		await Post.deleteOne({ _id: req.params.id })
-		res.status(204).send()
-	} catch {
-		res.status(404)
-		res.send({ error: "Post doesn't exist!" })
-	}
-})
+router.delete("/posts/:id", deletePost);
 
-module.exports = router
+export default router;
