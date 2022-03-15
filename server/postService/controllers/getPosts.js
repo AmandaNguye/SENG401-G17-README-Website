@@ -1,5 +1,8 @@
-import Post from "../models/post";
+import Post from "../models/post.js";
 
+//Todo: find posts by flair
+
+//Find post by either
 export const findPosts = async (req,res) => {
 	const {page = 0, limit = 10, q} = req.query;
 
@@ -13,7 +16,8 @@ export const findPosts = async (req,res) => {
 	{
 		const posts = await Post.find({
 			"content" : {$regex: query},
-			"title" : {$regex: query}
+			"title" : {$regex: query},
+			"tag" : {$regex: query}
 		}).limit(pageOptions.limit)
 		  .skip(pageOptions.limit * pageOptions.page);
 	}
@@ -28,11 +32,6 @@ export const findPosts = async (req,res) => {
 
     res.json(posts);
 }
-
-/*export const findPosts = async (req,res) => {
-	
-    res.json(posts);
-}*/
 
 export const getPostByID = async (req,res) => {
     try {

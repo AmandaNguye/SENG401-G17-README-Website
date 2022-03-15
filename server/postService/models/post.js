@@ -13,7 +13,7 @@ const postSchema = mongoose.Schema(
       minLength: 15,
     },
     tags: {
-      type: [String],
+      type: String,
     },
     fame: {
       type: Number,
@@ -26,7 +26,7 @@ const postSchema = mongoose.Schema(
       min: 0,
     },
     creator: {
-      type: mongoose.SchemaType.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       ref: "user",
       required: true,
       immutable: true,

@@ -1,4 +1,4 @@
-import { express } from "express";
+import express from "express";
 
 
 import { getPostByID, findPosts } from "../controllers/getPosts.js"
