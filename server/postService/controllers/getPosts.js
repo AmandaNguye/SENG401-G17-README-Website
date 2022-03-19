@@ -1,8 +1,6 @@
 import Post from "../models/post.js";
 
-//Todo: find posts by flair
-
-//Find post by either
+//Find post by key word or all posts
 export const findPosts = async (req,res) => {
 	const {page = 0, limit = 10, q} = req.query;
 
@@ -15,10 +13,11 @@ export const findPosts = async (req,res) => {
 	if(q)
 	{
 		const posts = await Post.find({
-			"content" : {$regex: query},
-			"title" : {$regex: query},
-			"tag" : {$regex: query}
-		}).limit(pageOptions.limit)
+			$text: {
+				$search: q
+			}
+		}).sort({ title: -1 })
+		  .limit(pageOptions.limit)
 		  .skip(pageOptions.limit * pageOptions.page);
 	}
 	//If there is not a query
@@ -26,6 +25,7 @@ export const findPosts = async (req,res) => {
 	{
 		//return all posts
 		const posts = await Post.find()
+			.sort({ title: -1 })
 			.limit(pageOptions.limit)
 			.skip(pageOptions.limit * pageOptions.page);
 	}

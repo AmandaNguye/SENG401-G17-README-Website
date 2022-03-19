@@ -15,16 +15,19 @@ const postSchema = mongoose.Schema(
     tags: {
       type: String,
     },
-    fame: {
+    fame_count: {
       type: Number,
       default: 0,
-      min: 0,
     },
-    lame: {
-      type: Number,
-      default: 0,
-      min: 0,
+    famer: {
+      type : [mongoose.Schema.Types.ObjectId],
+      ref: "user"
     },
+    lamer: {
+      type : [mongoose.Schema.Types.ObjectId],
+      ref: "user"
+    }
+    ,
     creator: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "user",

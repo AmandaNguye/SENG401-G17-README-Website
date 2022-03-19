@@ -4,18 +4,20 @@ import express from "express";
 import { getPostByID, findPosts } from "../controllers/getPosts.js"
 import { createPost } from "../controllers/createPost.js"
 import { deletePost } from "../controllers/deletePost.js"
+import { voteWithinPosts, votePosts } from "../controllers/updatePost.js"
 
 const router = express.Router();
 
+router.get("/", findPosts);
 
-//TODO: Combine get all posts and find posts
-//If there is no query then get all
-router.get("/posts", findPosts);
+router.get("/:id", getPostByID);
 
-router.get("/posts/:id", getPostByID);
+router.post("/", createPost);
 
-router.post("/posts", createPost);
+router.delete("/:id", deletePost);
 
-router.delete("/posts/:id", deletePost);
+router.put("/vote", votePosts);
+
+router.put("/:id/vote", voteWithinPosts);
 
 export default router;

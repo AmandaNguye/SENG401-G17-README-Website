@@ -9,10 +9,13 @@ export const createPost = async (req,res) => {
             title: postInfo.title,
             content: postInfo.content,
             tags: postInfo.tags,
-            fame: 0,
-            lame: 0,
+            fame_count: 0,
+            famer: [],
+            lamer: [],
             creator: postInfo.creator,
-        })
+        });
+        var result = await post.save();
+        res.json({result: result});
     } catch(e){
         res.status(406).json({message: e});
     }
