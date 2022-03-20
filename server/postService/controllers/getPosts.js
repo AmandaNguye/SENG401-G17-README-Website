@@ -59,11 +59,12 @@ export const getPosts = async (req,res) => {
 
 /**
  * Return post with the id in the url
- * @param {*} req
+ * @param {*} req Body should include user ID as userID
  * @param {*} res 
  */
 export const getPostByID = async (req,res) => {
     try {
+		const currentUser = req.body.userID;
 		const post = await Post.findOne({ _id: req.params.id });
 		res.json({
 			title: post.title,
