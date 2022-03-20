@@ -106,3 +106,29 @@ export const votePosts = async (req, res) => {
         }
     }
 }
+
+
+/**
+ * Update post with the inputted information, only inputted field will be updated
+ * @param {*} req 1. userID: ID of the current user 
+ * 2. update: the update needed for the post (Only title, content and tag can be updated)
+ * @param {*} res 
+ */
+export const updatePost = async (req, res) => {
+    const request = req.body;
+    const userID = request.userID;
+
+    try {
+		const post = await Post.findById(req.params.id);
+        if(userID != post.creator)
+        {
+            res.status(400).json({ error: "You do not have permission for this change"});
+        }
+        Object.assign(post, request.update);
+        book.save();
+        res.send({data: post});
+	} catch {
+		res.status(404).json({ error: "Post doesn't exist!" });
+	}
+
+}

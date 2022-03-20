@@ -65,7 +65,7 @@ export const getPosts = async (req,res) => {
 export const getPostByID = async (req,res) => {
     try {
 		const currentUser = req.body.userID;
-		const post = await Post.findOne({ _id: req.params.id });
+		const post = await Post.findById(req.params.id);
 		res.json({
 			title: post.title,
 			content: post.content,
