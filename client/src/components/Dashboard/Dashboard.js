@@ -27,6 +27,22 @@ const Dashboard = () => {
     navigate("/profile");
   };
 
+  const [posts, setPosts] = useState([]);
+
+  const loadPosts = async () => {
+    try {
+      const res = await fetch(`http://localhost:${PORT}/`, {});
+      const posts = await res.json();
+      setPosts(posts);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  useEffect(() => {
+    loadPosts();
+  }, []);
+
   return (
     <div>
       <h2>Dashboard</h2>
@@ -36,6 +52,7 @@ const Dashboard = () => {
       <button type="button" onClick={(e) => handleProfile(e)}>
         Profile
       </button>
+      <PostList posts={posts} refreshPosts={loadPosts} />
     </div>
   );
 };
