@@ -1,7 +1,11 @@
 import Post from "../models/post.js";
 
 
-//TODO: get user ID
+/**
+ * Create post using the information embedded in the http request
+ * @param {*} req 
+ * @param {*} res 
+ */
 export const createPost = async (req,res) => {
     try{
         const postInfo = req.body;

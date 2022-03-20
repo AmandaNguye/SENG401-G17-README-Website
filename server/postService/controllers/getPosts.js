@@ -1,8 +1,16 @@
 import Post from "../models/post.js";
 
-//Find post by key word or all posts
+/**
+ * Find posts using queries, if no query is inputted then find all posts
+ * @param {*} req all parameter is in in url query format ("/posts?")1. page: the current page number
+ * 2. limit: the amount of post within a page
+ * 3. q: the text query
+ * @param {*} res 
+ */
 export const findPosts = async (req,res) => {
 	const {page = 0, limit = 10, q} = req.query;
+
+	var posts;
 
 	const pageOptions = {
 		page: parseInt(page, 10),
@@ -12,7 +20,7 @@ export const findPosts = async (req,res) => {
 	//If there is a query
 	if(q)
 	{
-		const posts = await Post.find({
+		posts = await Post.find({
 			$text: {
 				$search: q
 			}
@@ -24,7 +32,7 @@ export const findPosts = async (req,res) => {
 	else
 	{
 		//return all posts
-		const posts = await Post.find()
+		posts = await Post.find()
 			.sort({ title: -1 })
 			.limit(pageOptions.limit)
 			.skip(pageOptions.limit * pageOptions.page);
@@ -33,6 +41,11 @@ export const findPosts = async (req,res) => {
     res.json(posts);
 }
 
+/**
+ * Return post with the id in the url
+ * @param {*} req 
+ * @param {*} res 
+ */
 export const getPostByID = async (req,res) => {
     try {
 		const post = await Post.findOne({ _id: req.params.id });

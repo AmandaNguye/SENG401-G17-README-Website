@@ -1,6 +1,11 @@
 import Post from "../models/post.js";
 
-//Modifying the fame count using fame/lame, require userID to be sent in req
+/**
+ * Modifying fame count
+ * @param {*} req 1. userID: current user ID,
+ *  2. voteType: the type of the vote: "" means cancel current vote, "fame" and "lame" means fame and lame
+ * @param {*} res 
+ */
 export const voteWithinPosts = async (req, res) => {
     const request = req.body;
     const postID = req.params.id;
@@ -102,7 +107,13 @@ export const voteWithinPosts = async (req, res) => {
     }
 }
 
-//Modifying the fame count using fame/lame, require userID, postID to be sent in req
+/**
+ * Modifying post fame_count
+ * @param {*} req 1. userID: current user ID,
+ *  2. voteType: the type of the vote: "" means cancel current vote, "fame" and "lame" means fame and lame
+ *  3. postID: the ID of the targeted post
+ * @param {*} res 
+ */
 export const votePosts = async (req, res) => {
     const request = req.body;
     const postID = request.postID;
