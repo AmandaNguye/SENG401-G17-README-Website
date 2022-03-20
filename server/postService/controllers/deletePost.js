@@ -2,7 +2,7 @@ import Post from "../models/post.js";
 
 /**
  * Delete a post but the user have to be the creator of the post
- * @param {*} req requires current user ID as userID
+ * @param {*} req 1. userID: ID of current user
  * @param {*} res 
  */
 export const deletePost = async (req, res) => {

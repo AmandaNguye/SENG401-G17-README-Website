@@ -12,7 +12,7 @@ const postSchema = mongoose.Schema(
       required: true,
       minLength: 15,
     },
-    tags: {
+    tag: {
       type: String,
     },
     fame_count: {
