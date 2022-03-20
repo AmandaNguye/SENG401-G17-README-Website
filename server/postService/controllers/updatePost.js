@@ -125,7 +125,7 @@ export const updatePost = async (req, res) => {
             res.status(400).json({ error: "You do not have permission for this change"});
         }
         Object.assign(post, request.update);
-        book.save();
+        await post.save();
         res.send({data: post});
 	} catch {
 		res.status(404).json({ error: "Post doesn't exist!" });
