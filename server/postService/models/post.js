@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 
+
 const postSchema = mongoose.Schema(
   {
     title: {
@@ -36,6 +37,9 @@ const postSchema = mongoose.Schema(
   },
   { timestamps: true }
 );
+
+postSchema.index({title: 'text', content: 'text', tag: 'text' });
+
 const Post = mongoose.model("Post", postSchema);
 
 export default Post;

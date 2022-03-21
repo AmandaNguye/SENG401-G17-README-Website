@@ -15,7 +15,7 @@ import Comment from "../models/comment.js";
 export const getComments = async (req,res) => {
 	const {page = 0, limit = 10, q} = req.query;
 	const postID = req.params.p_id;
-	const currentUser = req.body.userID;
+	const currentUser = req.query.userID;
 	var comments;
 
 	const pageOptions = {
