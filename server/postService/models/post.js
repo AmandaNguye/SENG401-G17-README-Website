@@ -5,12 +5,12 @@ const postSchema = mongoose.Schema(
     title: {
       type: String,
       required: true,
-      minLength: 15,
+      minLength: 5,
     },
     content: {
       type: String,
       required: true,
-      minLength: 15,
+      minLength: 5,
     },
     tag: {
       type: String,
@@ -20,17 +20,14 @@ const postSchema = mongoose.Schema(
       default: 0,
     },
     famer: {
-      type : [mongoose.Schema.Types.ObjectId],
-      ref: "user"
+      type : [String],
     },
     lamer: {
-      type : [mongoose.Schema.Types.ObjectId],
-      ref: "user"
+      type : [String],
     }
     ,
     creator: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "user",
+      type: String,
       required: true,
       immutable: true,
     },

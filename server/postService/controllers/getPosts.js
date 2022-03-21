@@ -49,8 +49,8 @@ export const getPosts = async (req,res) => {
 			tag: post.tag,
 			fame_count: post.fame_count,
 			creator: post.creator,
-			famed: post.famer.includes(currentUser),
-			lamed: post.lamer.includes(currentUser),
+			famed: post.famer && post.famer.includes(currentUser),
+			lamed: post.lamer && post.lamer.includes(currentUser),
 		});
 	}
 
