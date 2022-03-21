@@ -21,9 +21,11 @@ const postSchema = mongoose.Schema(
     },
     famer: {
       type : [String],
+      default: [],
     },
     lamer: {
       type : [String],
+      default: [],
     }
     ,
     creator: {
