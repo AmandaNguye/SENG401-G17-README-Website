@@ -12,23 +12,19 @@ const commentSchema = mongoose.Schema(
       default: 0,
     },
     post: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "post",
+      type: String,
       required: true,
       immutable: true,
     },
     famer: {
-      type : [mongoose.Schema.Types.ObjectId],
-      ref: "user"
+      type : [String]
     },
     lamer: {
-      type : [mongoose.Schema.Types.ObjectId],
-      ref: "user"
+      type : [String]
     }
     ,
     creator: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "user",
+      type: String,
       required: true,
       immutable: true,
     },
