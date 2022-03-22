@@ -1,7 +1,7 @@
 import React from "react";
 
 import PostCard from "../PostCard/PostCard";
-import "./PostLIst.css";
+import "./PostList.css";
 
 const PostList = ({ posts, refreshPosts }) => {
   return (

@@ -7,7 +7,7 @@ const PostCard = ({ post, refreshPosts }) => {
 
   return (
     <div className="post-card">
-      <h1>{post.Title}</h1>
+      <h1>{post.title}</h1>
       <p>{post.content}</p>
       <p>{post.fame_count}</p>
 

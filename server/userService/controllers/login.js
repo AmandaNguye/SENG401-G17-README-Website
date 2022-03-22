@@ -27,6 +27,7 @@ export const login = (req, res) => {
               return res.json({
                 message: "Success",
                 token: "Bearer " + token,
+                userID: dbUser._id,
               });
             }
           );
