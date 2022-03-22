@@ -1,5 +1,5 @@
 import Post from "../models/post.js";
-
+import mongoose from "mongoose";
 
 /**
  * Create post using the information embedded in the http request
@@ -12,7 +12,7 @@ export const createPost = async (req,res) => {
         const post = new Post({
             title: postInfo.title,
             content: postInfo.content,
-            tags: postInfo.tag,
+            tag: postInfo.tag,
             fame_count: 0,
             famer: [],
             lamer: [],

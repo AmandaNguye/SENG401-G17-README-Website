@@ -1,16 +1,17 @@
 import mongoose from "mongoose";
 
+
 const postSchema = mongoose.Schema(
   {
     title: {
       type: String,
       required: true,
-      minLength: 15,
+      minLength: 5,
     },
     content: {
       type: String,
       required: true,
-      minLength: 15,
+      minLength: 5,
     },
     tag: {
       type: String,
@@ -20,23 +21,25 @@ const postSchema = mongoose.Schema(
       default: 0,
     },
     famer: {
-      type : [mongoose.Schema.Types.ObjectId],
-      ref: "user"
+      type : [String],
+      default: [],
     },
     lamer: {
-      type : [mongoose.Schema.Types.ObjectId],
-      ref: "user"
+      type : [String],
+      default: [],
     }
     ,
     creator: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "user",
+      type: String,
       required: true,
       immutable: true,
     },
   },
   { timestamps: true }
 );
+
+postSchema.index({title: 'text', content: 'text', tag: 'text' });
+
 const Post = mongoose.model("Post", postSchema);
 
 export default Post;
