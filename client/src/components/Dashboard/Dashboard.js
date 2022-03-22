@@ -41,7 +41,10 @@ const Dashboard = () => {
     };
 
     try {
-      const res = await fetch(`http://localhost:5001/posts/${userID}`, payload); // Port 5001 for postService
+      const res = await fetch(
+        `http://localhost:5001/posts/?username=${userID}`,
+        payload
+      ); // Port 5001 for postService
       const posts = await res.json();
       setPosts(posts);
       console.log(posts);
