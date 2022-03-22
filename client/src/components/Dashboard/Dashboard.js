@@ -33,6 +33,7 @@ const Dashboard = () => {
 
   const loadPosts = async () => {
     const userID = localStorage.getItem("userID");
+    const username = localStorage.getItem("username");
     const payload = {
       method: "GET",
       headers: {
@@ -42,12 +43,12 @@ const Dashboard = () => {
 
     try {
       const res = await fetch(
-        `http://localhost:5001/posts/?username=${userID}`,
+        `http://localhost:5001/posts/?username=${username}`,
         payload
       ); // Port 5001 for postService
       const posts = await res.json();
       setPosts(posts);
-      console.log(posts);
+      // console.log(posts);
     } catch (err) {
       console.error(err);
     }
