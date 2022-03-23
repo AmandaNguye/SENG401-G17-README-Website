@@ -4,7 +4,7 @@ import Post from "../models/post.js";
  * Modifying fame count
  * @param {*} req 1. username: current user username,
  *  2. voteType: the type of the vote: "" means cancel current vote, "fame" and "lame" means fame and lame
- * @param {*} res 
+ * @param {*} res
  */
 export const votePosts = async (req, res) => {
     const request = req.body;
@@ -32,7 +32,7 @@ export const votePosts = async (req, res) => {
                         fame_count: -1
                     }
                 });
-                res.status(200).send();
+                return res.status(200).send();
             }
         }
         else if (lamed) {
@@ -49,11 +49,11 @@ export const votePosts = async (req, res) => {
                         fame_count: 1
                     }
                 });
-                res.status(200).send();
+                return res.status(200).send();
             }
         }
         else {
-            res.status(200).send();
+            return res.status(200).send();
         }
     }
     else if (request.voteType == "fame") {
@@ -94,43 +94,46 @@ export const votePosts = async (req, res) => {
             amountToChange = -1;
         }
     }
-
     if (voterType) {
-        var result;
-        if (voterType) {
-            result = await Post.updateOne({ "_id": postID }, {
+        var result = await Post.updateOne(
+            { _id: postID },
+            {
                 $addToSet: {
-                    [voterType]: request.username
-                }
-            });
-        }
-        if (result.modifiedCount > 0) {
-            result = await Post.updateOne({ "_id": postID }, {
-                $inc: {
-                    fame_count: amountToChange
-                }
-            });
-            res.status(200).send();
-        }
+                    [voterType]: request.username,
+                },
+            }
+        );
     }
-    res.status(400).send();
+    if (result.modifiedCount > 0) {
+        result = await Post.updateOne(
+            { _id: postID },
+            {
+                $inc: {
+                    fame_count: amountToChange,
+                },
+            }
+        );
+        return res.status(200).send();
+    }
+    //If nothing is send to user by this line, then there is an error
+    return res.status(404).send();
 }
-
 
 /**
  * Update post with the inputted information, only inputted field will be updated
- * @param {*} req 1. username: username of the current user 
+ * @param {*} req 1. username: username of the current user
  * 2. update: the update needed for the post (Only title, content and tag can be updated)
- * @param {*} res 
+ * @param {*} res
  */
 export const updatePost = async (req, res) => {
     const request = req.body;
     const username = request.username;
-
     try {
         const post = await Post.findById(req.params.id);
         if (username != post.creator) {
-            res.status(400).json({ error: "You do not have permission for this change" });
+            res
+                .status(400)
+                .json({ error: "You do not have permission for this change" });
             return;
         }
         delete request.update["fame_count"];
@@ -140,4 +143,4 @@ export const updatePost = async (req, res) => {
     } catch {
         res.status(404).json({ error: "Post doesn't exist!" });
     }
-}
+};

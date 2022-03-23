@@ -1,5 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+
+import PostList from "../PostList/PostList";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -30,10 +32,23 @@ const Dashboard = () => {
   const [posts, setPosts] = useState([]);
 
   const loadPosts = async () => {
+    const userID = localStorage.getItem("userID");
+    const username = localStorage.getItem("username");
+    const payload = {
+      method: "GET",
+      headers: {
+        userID: userID,
+      },
+    };
+
     try {
-      const res = await fetch(`http://localhost:${PORT}/`, {});
+      const res = await fetch(
+        `http://localhost:5001/posts/?username=${username}`,
+        payload
+      ); // Port 5001 for postService
       const posts = await res.json();
       setPosts(posts);
+      // console.log(posts);
     } catch (err) {
       console.error(err);
     }

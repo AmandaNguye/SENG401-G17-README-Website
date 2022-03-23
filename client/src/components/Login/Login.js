@@ -27,6 +27,9 @@ const Login = () => {
 
     if (data.token) {
       localStorage.setItem("token", data.token);
+      localStorage.setItem("userID", data.userID);
+      localStorage.setItem("username", data.username);
+      console.log(data.username);
       setFailed(false);
       window.location.href = "/dashboard";
     } else {

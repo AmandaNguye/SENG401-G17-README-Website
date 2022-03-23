@@ -1,4 +1,5 @@
 .post-card {
+  display: block;
   max-width: 725px;
   margin: auto;
   background: #4b4b4f;
@@ -9,4 +10,53 @@
   padding: 30px 50px 30px;
   margin-top: 30px;
   margin-bottom: 30px;
+  transition: all 0.2s ease-in-out;
+}
+
+/* .post-card:hover {
+  transform: scale(1.01);
+  transition: all 0.2s ease-in-out;
+} */
+
+.title {
+  font-size: 32px;
+  text-decoration: underline;
+  color: white;
+  cursor: pointer;
+}
+
+.card-footer {
+  justify-content: left;
+}
+
+.card-footer button {
+  height: 30px;
+  width: 70px;
+  border-radius: 15px;
+}
+
+.fame {
+  border: 2px solid #644aff;
+  background-color: transparent;
+  margin-right: 15px;
+  cursor: pointer;
+  box-shadow: inset 0px 0px 0px #644aff;
+  transition: all 0.2s !important;
+}
+
+.fame:hover {
+  box-shadow: inset 0px -80px 0px #644aff;
+}
+
+.lame {
+  border: 2px solid #ffd25e;
+  background-color: transparent;
+  margin-left: 15px;
+  cursor: pointer;
+  box-shadow: inset 0px 0px 0px #ffd25e;
+  transition: all 0.2s !important;
+}
+
+.lame:hover {
+  box-shadow: inset 0px 80px 0px #ffd25e;
 }
