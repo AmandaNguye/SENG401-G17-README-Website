@@ -28,6 +28,7 @@ export const login = (req, res) => {
                 message: "Success",
                 token: "Bearer " + token,
                 userID: dbUser._id,
+                username: dbUser.username,
               });
             }
           );
