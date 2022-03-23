@@ -7,13 +7,12 @@ import Post from "../models/post.js";
  * 2. limit: the amount of post within a page
  * 3. q: the text query
  *
- * username: current user
  * @param {*} res
  */
 
 export const getPosts = async (req, res) => {
   const { page = 0, limit = 10, q } = req.query;
-  const currentUser = req.query.username;
+  const currentUser = req.user.username;
   var posts;
 
   const pageOptions = {
@@ -60,12 +59,12 @@ export const getPosts = async (req, res) => {
 
 /**
  * Return post with the id in the url
- * @param {*} req username: current user
+ * @param {*} req
  * @param {*} res
  */
 export const getPostByID = async (req, res) => {
   try {
-    const currentUser = req.query.username;
+    const currentUser = req.user.username;
     const post = await Post.findById(req.params.id);
     res.json({
       title: post.title,
