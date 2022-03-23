@@ -7,126 +7,117 @@ import Post from "../models/post.js";
  * @param {*} res
  */
 export const votePosts = async (req, res) => {
-  const request = req.body;
-  const postID = req.params.id;
-  var voterType, amountToChange;
-  var post = await Post.findById(postID);
-  if (request.voteType == "") {
-    if (post.famer.includes(request.username)) {
-      var result = await Post.updateOne(
-        { _id: postID },
-        {
-          $pull: {
-            famer: request.username,
-          },
-        }
-      );
-      //If the update is successful
-      if (result.modifiedCount > 0) {
-        //Remove one fame from the count
-        await Post.updateOne(
-          { _id: postID },
-          {
-            $inc: {
-              fame_count: -1,
-            },
-          }
-        );
-        res.status(200).send();
-      }
-    } else if (post.lamer.includes(request.username)) {
-      result = await Post.updateOne(
-        { _id: postID },
-        {
-          $pull: {
-            lamer: request.username,
-          },
-        }
-      );
-      //If the attempt is successful
-      if (result.modifiedCount > 0) {
-        //Add one to the fame count
-        await Post.updateOne(
-          { _id: postID },
-          {
-            $inc: {
-              fame_count: 1,
-            },
-          }
-        );
-        res.status(200).send();
-      }
-    } else {
-      res.status(200).send();
+    const request = req.body;
+    if (request.username == null || request.username == "") {
+        return res.status(404).send();
     }
-  } else if (request.voteType == "fame") {
-    voterType = "famer";
+    const postID = req.params.id;
+    var voterType, amountToChange;
+    var post = await Post.findById(postID);
+    const famed = post.famer.includes(request.username);
+    const lamed = post.lamer.includes(request.username);
+    if (request.voteType == "") {
 
-    if (post.famer.includes(request.username)) {
-      res.status(200).send();
-      return;
-    }
-    if (post.lamer.includes(request.username)) {
-      await Post.updateOne(
-        { _id: postID },
-        {
-          $pull: {
-            lamer: request.username,
-          },
+        if (famed) {
+            var result = await Post.updateOne({ "_id": postID }, {
+                $pull: {
+                    famer: request.username
+                }
+            });
+            //If the update is successful
+            if (result.modifiedCount > 0) {
+                //Remove one fame from the count
+                await Post.updateOne({ _id: postID }, {
+                    $inc: {
+                        fame_count: -1
+                    }
+                });
+                return res.status(200).send();
+            }
         }
-      );
-      amountToChange = 2;
-    } else {
-      amountToChange = 1;
-    }
-  } else if (request.voteType == "lame") {
-    voterType = "lamer";
-
-    if (post.lamer.includes(request.username)) {
-      res.status(200).send();
-      return;
-    }
-    if (post.famer.includes(request.username)) {
-      var result = await Post.updateOne(
-        { _id: postID },
-        {
-          $pull: {
-            famer: request.username,
-          },
+        else if (lamed) {
+            result = await Post.updateOne({ "_id": postID }, {
+                $pull: {
+                    lamer: request.username
+                }
+            });
+            //If the attempt is successful
+            if (result.modifiedCount > 0) {
+                //Add one to the fame count
+                await Post.updateOne({ "_id": postID }, {
+                    $inc: {
+                        fame_count: 1
+                    }
+                });
+                return res.status(200).send();
+            }
         }
-      );
-      amountToChange = -2;
-    } else {
-      amountToChange = -1;
+        else {
+            return res.status(200).send();
+        }
     }
-  }
+    else if (request.voteType == "fame") {
+        voterType = "famer";
 
-  if (voterType) {
-    var result;
+        if (famed) {
+            res.status(200).send();
+            return;
+        }
+        if (lamed) {
+            await Post.updateOne({ "_id": postID }, {
+                $pull: {
+                    lamer: request.username
+                }
+            });
+            amountToChange = 2;
+        }
+        else {
+            amountToChange = 1;
+        }
+    }
+    else if (request.voteType == "lame") {
+        voterType = "lamer";
+
+        if (lamed) {
+            res.status(200).send();
+            return;
+        }
+        if (famed) {
+            var result = await Post.updateOne({ "_id": postID }, {
+                $pull: {
+                    famer: request.username
+                }
+            });
+            amountToChange = -2;
+        }
+        else {
+            amountToChange = -1;
+        }
+    }
     if (voterType) {
-      result = await Post.updateOne(
-        { _id: postID },
-        {
-          $addToSet: {
-            [voterType]: request.username,
-          },
-        }
-      );
+        var result = await Post.updateOne(
+            { _id: postID },
+            {
+                $addToSet: {
+                    [voterType]: request.username,
+                },
+            }
+        );
     }
     if (result.modifiedCount > 0) {
-      result = await Post.updateOne(
-        { _id: postID },
-        {
-          $inc: {
-            fame_count: amountToChange,
-          },
-        }
-      );
-      res.status(200).send();
+        result = await Post.updateOne(
+            { _id: postID },
+            {
+                $inc: {
+                    fame_count: amountToChange,
+                },
+            }
+        );
+        return res.status(200).send();
     }
-  }
-  res.status(400).send();
-};
+    //If nothing is send to user by this line, then there is an error
+    return res.status(404).send();
+}
 
 /**
  * Update post with the inputted information, only inputted field will be updated
@@ -135,22 +126,21 @@ export const votePosts = async (req, res) => {
  * @param {*} res
  */
 export const updatePost = async (req, res) => {
-  const request = req.body;
-  const username = request.username;
-
-  try {
-    const post = await Post.findById(req.params.id);
-    if (username != post.creator) {
-      res
-        .status(400)
-        .json({ error: "You do not have permission for this change" });
-      return;
+    const request = req.body;
+    const username = request.username;
+    try {
+        const post = await Post.findById(req.params.id);
+        if (username != post.creator) {
+            res
+                .status(400)
+                .json({ error: "You do not have permission for this change" });
+            return;
+        }
+        delete request.update["fame_count"];
+        Object.assign(post, request.update);
+        await post.save();
+        res.status(200).send({ data: post });
+    } catch {
+        res.status(404).json({ error: "Post doesn't exist!" });
     }
-    delete request.update["fame_count"];
-    Object.assign(post, request.update);
-    await post.save();
-    res.status(200).send({ data: post });
-  } catch {
-    res.status(404).json({ error: "Post doesn't exist!" });
-  }
 };

@@ -2,16 +2,16 @@ import Comment from "../models/comment.js";
 
 /**
  * Delete a comment but the user have to be the creator of the post
- * @param {*} req 1. userID: ID of current user
+ * @param {*} req 1. username: username of current user
  * @param {*} res 
  */
 export const deleteComment = async (req, res) => {
-	const userID = req.body.userID;
+	const username = req.body.username;
     try {
 		const result = await Comment.deleteOne({ 
 			_id: req.params.c_id,
 			post: req.params.p_id,
-			creator: userID,
+			creator: username,
 		});
 		if(result.deletedCount == 1)
 		{

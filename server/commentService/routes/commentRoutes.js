@@ -10,17 +10,19 @@ const router = express.Router();
 
 //p_id: id of the post
 //c_id: id of the comment
+//Route is fully display in here because we need to capture post id
 
-router.get("/posts/:p_id/comments", getComments);
 
-router.get("/posts/:p_id/comments/:c_id", getCommentByID);
+router.get("/:p_id/comments/", getComments);
 
-router.post("/posts/:p_id/comments", createComment);
+router.get("/:p_id/comments/:c_id", getCommentByID);
 
-router.delete("/posts/:p_id/comments/:c_id", deleteComment);
+router.post("/:p_id/comments/", createComment);
 
-router.put("/posts/:p_id/comments/:c_id/vote", voteComment);
+router.delete("/:p_id/comments/:c_id", deleteComment);
 
-router.patch("/posts/:p_id/comments/:c_id", updateComment);
+router.put("/:p_id/comments/:c_id/vote", voteComment);
+
+router.patch("/:p_id/comments/:c_id", updateComment);
 
 export default router;
