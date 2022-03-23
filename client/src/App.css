@@ -1,7 +1,14 @@
+body {
+  background: rgb(44, 44, 44);
+}
+
 .wrapper {
-  padding: 20px;
-  background: #0b0b0e;
-  opacity: 84%;
+  height: 100%;
+  padding-top: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+  margin: 0;
   position: absolute;
   top: 0px;
   right: 0px;

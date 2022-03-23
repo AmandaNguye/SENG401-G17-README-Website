@@ -34,3 +34,14 @@ p .failed {
   width: 100px !important;
   cursor: pointer;
 }
+
+.signup {
+  display: flex;
+  flex-direction: column;
+  margin-top: 80px;
+  align-items: center;
+}
+
+.signupLink {
+  color: rgb(150, 150, 150);
+}

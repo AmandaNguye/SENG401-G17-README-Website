@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 import "./Login.css";
 
@@ -70,6 +70,12 @@ const Login = () => {
         <input className="button" type="submit" value="Login" />
       </form>
       {failed && <p className="failed">Entered wrong username or password</p>}
+      <div className="signup">
+        <p>Don't have an account yet?</p>
+        <Link className="signupLink" to="/register">
+          Sign up
+        </Link>
+      </div>
     </div>
   );
 };

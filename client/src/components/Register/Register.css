@@ -35,3 +35,14 @@
   width: 100px !important;
   cursor: pointer;
 }
+
+.login {
+  display: flex;
+  flex-direction: column;
+  margin-top: 80px;
+  align-items: center;
+}
+
+.loginLink {
+  color: rgb(150, 150, 150);
+}

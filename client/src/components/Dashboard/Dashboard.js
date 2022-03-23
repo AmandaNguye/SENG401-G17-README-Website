@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 
 import PostList from "../PostList/PostList";
 
+import "./Dashboard.css";
+
 const Dashboard = () => {
   const navigate = useNavigate();
 
@@ -59,7 +61,7 @@ const Dashboard = () => {
   }, []);
 
   return (
-    <div>
+    <div className="dashboard-wrapper">
       <h2>Dashboard</h2>
       <button type="button" onClick={(e) => handleLogout(e)}>
         Log Out

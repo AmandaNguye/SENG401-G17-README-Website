@@ -5,7 +5,7 @@ import "./PostList.css";
 
 const PostList = ({ posts, refreshPosts }) => {
   return (
-    <div>
+    <div className="post-list">
       {posts &&
         posts.map((post) => (
           <PostCard key={post._id} post={post} refreshPosts={refreshPosts} />
