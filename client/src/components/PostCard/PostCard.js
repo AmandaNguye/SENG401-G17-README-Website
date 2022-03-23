@@ -1,10 +1,18 @@
 import React from "react";
 import { useNavigate } from "react-router";
+import { IconButton } from "@chakra-ui/react";
+import { TriangleUpIcon, TriangleDownIcon } from "@chakra-ui/icons";
 
 import "./PostCard.css";
 
 const PostCard = ({ post, refreshPosts }) => {
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // for title link, comment link, etc.
+  const famed = post.famed;
+  const lamed = post.lamed;
+
+  const size = 20;
+  const upvoteColor = "#644aff";
+  const downvoteColor = "#ffd25e";
 
   const cancelVote = async (e) => {
     e.preventDefault();
@@ -34,9 +42,6 @@ const PostCard = ({ post, refreshPosts }) => {
       console.log(error);
     }
   };
-
-  const famed = post.famed;
-  const lamed = post.lamed;
 
   const upvote = async (e) => {
     if (famed) {
@@ -106,43 +111,54 @@ const PostCard = ({ post, refreshPosts }) => {
     }
   };
 
-  return (
-    <div className="post-card">
-      <a
-        className="title"
-        onClick={(e) => {
-          e.preventDefault();
-          console.log(`post ${post._id} clicked`);
-        }}
-      >
-        {post.title}
-      </a>
-      <p>{post.content}</p>
-      <p>{post.fame_count}</p>
+  const UpvoteIcon = (
+    <TriangleUpIcon w={size} h={size} _hover={{ color: upvoteColor }} />
+  );
 
-      <div className="card-footer">
-        <button
-          className="fame"
-          onClick={upvote}
-          style={
-            famed
-              ? { backgroundColor: "#644aff" }
-              : { backgroundColor: "transparent" }
-          }
-        >
-          Fame
-        </button>
-        <button
-          className="lame"
-          onClick={downvote}
-          style={
-            lamed
-              ? { backgroundColor: "#ffd25e" }
-              : { backgroundColor: "transparent" }
-          }
-        >
-          Lame
-        </button>
+  const DownvoteIcon = (
+    <TriangleDownIcon w={size} h={size} _hover={{ color: downvoteColor }} />
+  );
+
+  return (
+    <div className="container">
+      <div className="post-card">
+        <div className="vote-box">
+          <IconButton
+            role="group"
+            onClick={upvote}
+            backgroundColor="transparent"
+            color={famed ? upvoteColor : "gray"}
+            boxShadow="none !important"
+            border="none"
+            cursor="pointer"
+            icon={UpvoteIcon}
+          />
+          <p>{post.fame_count}</p>
+          <IconButton
+            role="group"
+            onClick={downvote}
+            backgroundColor="transparent"
+            color={lamed ? downvoteColor : "gray"}
+            boxShadow="none !important"
+            border="none"
+            cursor="pointer"
+            icon={DownvoteIcon}
+          />
+        </div>
+        <div className="post-content">
+          <a
+            className="title"
+            onClick={(e) => {
+              e.preventDefault();
+              console.log(`post ${post._id} clicked`);
+            }}
+          >
+            {post.title}
+          </a>
+          <p className="post-text">{post.content}</p>
+
+          <div className="card-footer"></div>
+        </div>
       </div>
     </div>
   );

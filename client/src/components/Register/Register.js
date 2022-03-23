@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 import "./Register.css";
 
@@ -29,10 +29,10 @@ const Register = () => {
     const data = await response.json();
 
     if (data.message === "Success") {
-        setTaken(false);
-        navigate("/login");
+      setTaken(false);
+      navigate("/login");
     } else if (data.message === "Username or email has already been taken") {
-        setTaken(true);
+      setTaken(true);
     }
   };
 
@@ -71,9 +71,15 @@ const Register = () => {
         <br />
         <input className="button" type="submit" value="Register" />
       </form>
-      {taken && 
+      {taken && (
         <p className="taken">Username or email has already been taken</p>
-      }
+      )}
+      <div className="login">
+        <p>Already have an account?</p>
+        <Link className="loginLink" to="/login">
+          Log in
+        </Link>
+      </div>
     </div>
   );
 };
