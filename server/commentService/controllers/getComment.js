@@ -5,19 +5,16 @@ import Comment from "../models/comment.js";
 /**
  * Find comments of a post
  * @param {*} req
- * URL Queries format ("/post/:p_id/comment?page=0&limit=10&username=abc") 
+ * URL Queries format ("/post/:p_id/comment?page=0&limit=10") 
  * 1. page: the current page number
  * 2. limit: the amount of comment within a page
- * 3. username: the current user username
- * 
- * :p_id need to be id of the post
  * 
  * @param {*} res 
  */
 export const getComments = async (req, res) => {
 	const { page = 0, limit = 10 } = req.query;
 	const postID = req.params.p_id;
-	const currentUser = req.query.username;
+	const currentUser = req.user.username;
 	var comments;
 
 	const pageOptions = {
@@ -47,12 +44,12 @@ export const getComments = async (req, res) => {
 
 /**
  * Return post with the id in the url
- * @param {*} req query should include: username of the current user as username
+ * @param {*} req
  * @param {*} res 
  */
 export const getCommentByID = async (req, res) => {
 	try {
-		const currentUser = req.query.username;
+		const currentUser = req.user.username;
 		const comment = await Comment.findById(req.params.c_id);
 		res.json({
 			content: comment.content,

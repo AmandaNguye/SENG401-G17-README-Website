@@ -1,5 +1,5 @@
 import express from "express";
-
+import jwt from "jsonwebtoken";
 
 import { getCommentByID, getComments } from "../controllers/getComment.js"
 import { createComment } from "../controllers/createComment.js"
@@ -10,19 +10,61 @@ const router = express.Router();
 
 //p_id: id of the post
 //c_id: id of the comment
-//Route is fully display in here because we need to capture post id
+//Route is in here because we need to capture post id
 
+function verifyJWTRequired(req, res, next) {
+    const token = req.headers["x-access-token"]?.split(" ")[1];
 
-router.get("/:p_id/comments/", getComments);
+    if (token) {
+        jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+            if (err)
+                return res.json({
+                    isLoggedIn: false,
+                    message: "Failed To Authenticate",
+                });
+            req.user = {};
+            req.user.id = decoded.id;
+            req.user.username = decoded.username;
+            next();
+        });
+    } else {
+        res.json({ message: "Incorrect Token Given", isLoggedIn: false });
+    }
+}
 
-router.get("/:p_id/comments/:c_id", getCommentByID);
+function verifyJWT(req, res, next) {
+    const token = req.headers["x-access-token"]?.split(" ")[1];
 
-router.post("/:p_id/comments/", createComment);
+    if (token) {
+        jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+            if (err)
+                return res.json({
+                    isLoggedIn: false,
+                    message: "Failed To Authenticate",
+                });
+            req.user = {};
+            req.user.id = decoded.id;
+            req.user.username = decoded.username;
+            next();
+        });
+    }
+    else {
+        req.user = {};
+        req.user.username = "";
+        next();
+    }
+}
 
-router.delete("/:p_id/comments/:c_id", deleteComment);
+router.get("/:p_id/comments/", verifyJWT, getComments);
 
-router.put("/:p_id/comments/:c_id/vote", voteComment);
+router.get("/:p_id/comments/:c_id", verifyJWT, getCommentByID);
 
-router.patch("/:p_id/comments/:c_id", updateComment);
+router.post("/:p_id/comments/", verifyJWTRequired, createComment);
+
+router.delete("/:p_id/comments/:c_id", verifyJWTRequired, deleteComment);
+
+router.put("/:p_id/comments/:c_id/vote", verifyJWTRequired, voteComment);
+
+router.patch("/:p_id/comments/:c_id", verifyJWTRequired, updateComment);
 
 export default router;
