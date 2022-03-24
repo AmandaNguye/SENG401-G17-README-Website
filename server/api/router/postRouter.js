@@ -11,7 +11,16 @@ const postURL = process.env.POST_URL;
 
 router.get("/", async (req, res, next) => {
     try {
-        const response = await got.get(postURL + "/", {
+        const { page = 0, limit = 10, q } = req.query;
+        if (q) {
+            const url = postURL + "/?page=" + page
+                + "&limit=" + limit
+                + "&q=" + q;
+        }
+        else {
+            const url = postURL + "/?page=" + page + "&limit=" + limit;
+        }
+        const response = await got.get(url + "/", {
             headers: {
                 "x-access-token": req.headers["x-access-token"]
             }
@@ -25,7 +34,10 @@ router.get("/", async (req, res, next) => {
 
 router.get("/user/:name", async (req, res, next) => {
     try {
-        const response = await got.get(postURL + '/user/' + req.params.name, {
+        const { page = 0, limit = 10 } = req.query;
+        const url = postURL + "/user/?page=" + page + "&limit=" + limit;
+
+        const response = await got.get(url, {
             headers: {
                 "x-access-token": req.headers["x-access-token"]
             }
