@@ -2,26 +2,23 @@ import Post from "../models/post.js";
 
 /**
  * Modifying fame count
- * @param {*} req 1. username: current user username,
- *  2. voteType: the type of the vote: "" means cancel current vote, "fame" and "lame" means fame and lame
+ * @param {*} req voteType: the type of the vote: "" means cancel current vote, "fame" and "lame" means fame and lame
  * @param {*} res
  */
 export const votePosts = async (req, res) => {
     const request = req.body;
-    if (request.username == null || request.username == "") {
-        return res.status(404).send();
-    }
+    const username = req.user.username;
     const postID = req.params.id;
     var voterType, amountToChange;
     var post = await Post.findById(postID);
-    const famed = post.famer.includes(request.username);
-    const lamed = post.lamer.includes(request.username);
+    const famed = post.famer.includes(username);
+    const lamed = post.lamer.includes(username);
     if (request.voteType == "") {
 
         if (famed) {
             var result = await Post.updateOne({ "_id": postID }, {
                 $pull: {
-                    famer: request.username
+                    famer: username
                 }
             });
             //If the update is successful
@@ -38,7 +35,7 @@ export const votePosts = async (req, res) => {
         else if (lamed) {
             result = await Post.updateOne({ "_id": postID }, {
                 $pull: {
-                    lamer: request.username
+                    lamer: username
                 }
             });
             //If the attempt is successful
@@ -66,7 +63,7 @@ export const votePosts = async (req, res) => {
         if (lamed) {
             await Post.updateOne({ "_id": postID }, {
                 $pull: {
-                    lamer: request.username
+                    lamer: username
                 }
             });
             amountToChange = 2;
@@ -85,7 +82,7 @@ export const votePosts = async (req, res) => {
         if (famed) {
             var result = await Post.updateOne({ "_id": postID }, {
                 $pull: {
-                    famer: request.username
+                    famer: username
                 }
             });
             amountToChange = -2;
@@ -99,7 +96,7 @@ export const votePosts = async (req, res) => {
             { _id: postID },
             {
                 $addToSet: {
-                    [voterType]: request.username,
+                    [voterType]: username,
                 },
             }
         );
@@ -121,13 +118,12 @@ export const votePosts = async (req, res) => {
 
 /**
  * Update post with the inputted information, only inputted field will be updated
- * @param {*} req 1. username: username of the current user
- * 2. update: the update needed for the post (Only title, content and tag can be updated)
+ * @param {*} req update: the update needed for the post (Only title, content and tag can be updated)
  * @param {*} res
  */
 export const updatePost = async (req, res) => {
     const request = req.body;
-    const username = request.username;
+    const username = req.user.username;
     try {
         const post = await Post.findById(req.params.id);
         if (username != post.creator) {

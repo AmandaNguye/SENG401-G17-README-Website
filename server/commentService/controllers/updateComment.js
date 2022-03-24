@@ -8,15 +8,12 @@ import Comment from "../models/comment.js";
  */
 export const voteComment = async (req, res) => {
     const request = req.body;
-
-    if (request.username == null || request.username == "") {
-        return res.status(404).send();
-    }
+    const username = req.user.username;
     const commentID = req.params.c_id;
     var voterType, amountToChange;
     var comment = await Comment.findById(commentID);
-    const famed = comment.famer.includes(request.username);
-    const lamed = comment.lamer.includes(request.username);
+    const famed = comment.famer.includes(username);
+    const lamed = comment.lamer.includes(username);
 
     if (request.voteType == "") {
         if (famed) {
@@ -24,7 +21,7 @@ export const voteComment = async (req, res) => {
                 { _id: commentID },
                 {
                     $pull: {
-                        famer: request.username
+                        famer: username
                     }
                 }
             );
@@ -47,7 +44,7 @@ export const voteComment = async (req, res) => {
                 { _id: commentID },
                 {
                     $pull: {
-                        lamer: request.username,
+                        lamer: username,
                     },
                 }
             );
@@ -78,7 +75,7 @@ export const voteComment = async (req, res) => {
         if (lamed) {
             await Comment.updateOne({ _id: commentID }, {
                 $pull: {
-                    lamer: request.username
+                    lamer: username
                 }
             });
             amountToChange = 2;
@@ -94,7 +91,7 @@ export const voteComment = async (req, res) => {
         if (famed) {
             await Comment.updateOne({ _id: commentID }, {
                 $pull: {
-                    famer: request.username
+                    famer: username
                 }
             });
             amountToChange = -2;
@@ -107,7 +104,7 @@ export const voteComment = async (req, res) => {
     if (voterType) {
         let result = await Comment.updateOne({ _id: commentID }, {
             $addToSet: {
-                [voterType]: request.username
+                [voterType]: username
             }
         });
         if (result.modifiedCount > 0) {
@@ -125,13 +122,12 @@ export const voteComment = async (req, res) => {
 
 /**
  * Update comment with the inputted information, only inputted field will be updated
- * @param {*} req 1. username: username of the current user 
- * 2. content: the updated content
+ * @param {*} req content: the updated content
  * @param {*} res 
  */
 export const updateComment = async (req, res) => {
     const request = req.body;
-    const user = request.username;
+    const user = req.user.username;
     try {
         var comment = await Comment.findById(req.params.c_id);
         if (user != comment.creator) {
