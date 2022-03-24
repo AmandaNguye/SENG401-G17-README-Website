@@ -2,11 +2,15 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import PostList from "../PostList/PostList";
+import PostForm from "../PostForm/PostForm";
+import CondensedPostForm from "../CondensedPostForm/CondensedPostForm";
 
 import "./Dashboard.css";
 
 const Dashboard = () => {
   const navigate = useNavigate();
+
+  const [posting, setPosting] = useState(false);
 
   useEffect(() => {
     fetch("http://localhost:5000/isUserAuth", {
@@ -64,6 +68,11 @@ const Dashboard = () => {
       <button type="button" onClick={(e) => handleProfile(e)}>
         Profile
       </button>
+      {posting ? (
+        <PostForm refreshPosts={loadPosts} setForm={setPosting} />
+      ) : (
+        <CondensedPostForm setForm={setPosting} />
+      )}
       <PostList posts={posts} refreshPosts={loadPosts} />
     </div>
   );
