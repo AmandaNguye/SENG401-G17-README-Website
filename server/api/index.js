@@ -3,7 +3,8 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import dotenv from "dotenv";
 
-import Router from "./router/apiRoutes.js"
+import userRouter from "./router/userRoutes.js"
+import postRouter from "./router/postRouter.js"
 
 const app = express();
 
@@ -13,7 +14,14 @@ app.use(bodyParser.json({ limit: "30mb", extended: "true" }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: "true" }));
 app.use(cors());
 
-app.use('/', Router);
+
+app.use('/posts', postRouter);
+app.use('/', userRouter);
+
+app.use((err, req, res, next) => {
+    console.error(err.stack)
+    res.status(500).send();
+})
 
 const PORT = process.env.PORT || 5005;
 
