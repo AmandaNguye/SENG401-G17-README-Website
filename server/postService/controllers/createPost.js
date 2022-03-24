@@ -3,11 +3,13 @@ import mongoose from "mongoose";
 
 /**
  * Create post using the information embedded in the http request
- * @param {*} req 1. title: post title 2. content: post content 3. tag: tag of the post 4. creator: id of creator
+ * @param {*} req 1. title: post title 
+ * 2. content: post content
+ * 3. tag: tag of the post
  * @param {*} res 
  */
-export const createPost = async (req,res) => {
-    try{
+export const createPost = async (req, res) => {
+    try {
         const postInfo = req.body;
         const post = new Post({
             title: postInfo.title,
@@ -16,11 +18,11 @@ export const createPost = async (req,res) => {
             fame_count: 0,
             famer: [],
             lamer: [],
-            creator: postInfo.creator,
+            creator: req.user.username,
         });
         var result = await post.save();
-        res.json({result: result});
-    } catch(e){
-        res.status(406).json({message: e});
+        res.json({ result: result });
+    } catch (e) {
+        res.status(406).json({ message: e });
     }
 }

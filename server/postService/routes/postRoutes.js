@@ -1,22 +1,68 @@
 import express from "express";
+import jwt from "jsonwebtoken";
 
-import { getPostByID, getPosts } from "../controllers/getPosts.js";
+import { getPostByID, getPosts, getPostsByUser } from "../controllers/getPosts.js";
 import { createPost } from "../controllers/createPost.js";
 import { deletePost } from "../controllers/deletePost.js";
 import { votePosts, updatePost } from "../controllers/updatePost.js";
 
 const router = express.Router();
 
-router.get("/", getPosts);
+function verifyJWTRequired(req, res, next) {
+    const token = req.headers["x-access-token"]?.split(" ")[1];
 
-router.get("/:id", getPostByID);
+    if (token) {
+        jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+            if (err)
+                return res.json({
+                    isLoggedIn: false,
+                    message: "Failed To Authenticate",
+                });
+            req.user = {};
+            req.user.id = decoded.id;
+            req.user.username = decoded.username;
+            next();
+        });
+    } else {
+        res.json({ message: "Incorrect Token Given", isLoggedIn: false });
+    }
+}
 
-router.post("/", createPost);
+function verifyJWT(req, res, next) {
+    const token = req.headers["x-access-token"]?.split(" ")[1];
 
-router.delete("/:id", deletePost);
+    if (token) {
+        jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+            if (err)
+                return res.json({
+                    isLoggedIn: false,
+                    message: "Failed To Authenticate",
+                });
+            req.user = {};
+            req.user.id = decoded.id;
+            req.user.username = decoded.username;
+            next();
+        });
+    }
+    else {
+        req.user = {};
+        req.user.username = "";
+        next();
+    }
+}
 
-router.put("/:id/vote", votePosts);
+router.get("/", verifyJWT, getPosts);
 
-router.patch("/:id", updatePost);
+router.get("/user", verifyJWT, getPostsByUser);
+
+router.get("/:id", verifyJWT, getPostByID);
+
+router.post("/", verifyJWTRequired, createPost);
+
+router.delete("/:id", verifyJWTRequired, deletePost);
+
+router.put("/:id/vote", verifyJWTRequired, votePosts);
+
+router.patch("/:id", verifyJWTRequired, updatePost);
 
 export default router;
