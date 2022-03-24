@@ -36,7 +36,7 @@ export const getComments = async (req, res) => {
 			creator: comments[i].creator,
 			famed: comments[i].famer.includes(currentUser),
 			lamed: comments[i].lamer.includes(currentUser),
-			_id: comments[i]._id,
+
 		});
 	}
 	res.json(result);
@@ -57,6 +57,8 @@ export const getCommentByID = async (req, res) => {
 			creator: comment.creator,
 			famed: comment.famer.includes(currentUser),
 			lamed: comment.lamer.includes(currentUser),
+			_id: comment._id,
+			post: comment.post,
 		});
 	} catch {
 		res.status(404).json({ error: "Comment doesn't exist!" });
