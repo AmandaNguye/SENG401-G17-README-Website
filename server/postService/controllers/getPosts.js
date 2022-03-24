@@ -68,11 +68,11 @@ export const getPosts = async (req, res) => {
 export const getPostsByUser = async (req, res) => {
   const { page = 0, limit = 10, q } = req.query;
   const currentUser = req.user.username;
-  const queryUser = req.query.username;
+  const queryUser = req.query.user;
   var posts;
 
   if (!queryUser) {
-    res.status(404).json({ error: "Post doesn't exist!" });
+    return res.status(404).json({ error: "Invalid Request" });
   }
 
   const pageOptions = {
