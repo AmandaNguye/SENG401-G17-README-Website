@@ -23,6 +23,8 @@ const Dashboard = () => {
   const handleLogout = (e) => {
     e.preventDefault();
     localStorage.removeItem("token");
+    localStorage.removeItem("userID");
+    localStorage.removeItem("username");
     navigate("/login");
   };
 
