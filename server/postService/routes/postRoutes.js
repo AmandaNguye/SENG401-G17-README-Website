@@ -1,7 +1,7 @@
 import express from "express";
 import jwt from "jsonwebtoken";
 
-import { getPostByID, getPosts } from "../controllers/getPosts.js";
+import { getPostByID, getPosts, getPostsByUser } from "../controllers/getPosts.js";
 import { createPost } from "../controllers/createPost.js";
 import { deletePost } from "../controllers/deletePost.js";
 import { votePosts, updatePost } from "../controllers/updatePost.js";
@@ -52,6 +52,8 @@ function verifyJWT(req, res, next) {
 }
 
 router.get("/", verifyJWT, getPosts);
+
+router.get("/user", verifyJWT, getPostsByUser);
 
 router.get("/:id", verifyJWT, getPostByID);
 
