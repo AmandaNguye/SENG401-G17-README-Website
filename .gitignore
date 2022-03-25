@@ -104,4 +104,4 @@ dist
 .tern-port
 
 .env
-client/node_modules
+client/node_modules/

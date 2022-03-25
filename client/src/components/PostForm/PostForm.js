@@ -22,7 +22,7 @@ const PostForm = ({ refreshPosts, setForm }) => {
     };
 
     try {
-      await fetch("http://localhost:5001/posts", {
+      await fetch("http://localhost:5005/posts", {
         method: "POST",
         headers: {
           Accept: "application/json",

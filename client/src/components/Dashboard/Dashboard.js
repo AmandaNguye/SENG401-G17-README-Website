@@ -13,7 +13,7 @@ const Dashboard = () => {
   const [posting, setPosting] = useState(false);
 
   useEffect(() => {
-    fetch("http://localhost:5000/isUserAuth", {
+    fetch("http://localhost:5005/isUserAuth", {
       headers: {
         "x-access-token": localStorage.getItem("token"),
       },
@@ -46,7 +46,7 @@ const Dashboard = () => {
     };
 
     try {
-      const res = await fetch(`http://localhost:5001/posts`, payload); // Port 5001 for postService
+      const res = await fetch(`http://localhost:5005/posts`, payload);
       const posts = await res.json();
       setPosts(posts);
       // console.log(posts);
