@@ -1,5 +1,4 @@
 .page {
-	box-sizing: border-box;
 	max-width: 70vw;
 	margin: auto;
 	color: black;
@@ -11,8 +10,8 @@
 .page--content {
 	background-color: #4b4b4f;
 	display: grid;
-	grid-template-columns: 10% 90%;
-	grid-template-rows: 20% 80%;
+	grid-template-columns: 10ch auto;
+	grid-template-rows: 20% 70% 10%;
 	box-shadow: 0 0 0.5em #000;
 }
 
@@ -34,12 +33,47 @@
 	grid-row: 2 / 2;
 }
 
-.page--content--likedislike {
+.page--content--famelame {
 	background-color: #262629;
-	grid-row: span 2;
+	grid-row: span 3;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+	align-items: center;
+}
+
+.page--content--famelame--famecount {
+	color: #b2a5ff;
+	padding: 0.5em;
+}
+
+.page--content--famelame--lamecount {
+	color: #ffd25e;
+	padding: 0.5em;
+}
+
+.page--metadata__famed {
+	background-color: #b2a5ff;
+}
+
+.page--metadata__lamed {
+	background-color: #ffd25e;
+}
+
+.page--metadata {
+	background-color: #000;
+	opacity: 20%;
+	display: flex;
+	align-items: center;
+	padding: 1em;
+}
+
+.page--metadata--creator {
+	margin-right: auto;
+}
+
+.page--metadata--tag {
+	padding: 2em;
 }
 
 .page--comments {
