@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import PostList from "../PostList/PostList";
 
 const Profile = () => {
   const navigate = useNavigate();
 
-  const [username, setUsername] = useState('');
+  const [username, setUsername] = useState("");
 
   const [posts, setPosts] = useState([]);
 
@@ -22,14 +22,14 @@ const Profile = () => {
   });
 
   const handleLogout = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     localStorage.removeItem("token");
-    navigate("/login")
+    navigate("/login");
   };
 
   const handleDashboard = (e) => {
-    e.preventDefault()
-    navigate("/dashboard")
+    e.preventDefault();
+    navigate("/dashboard");
   };
 
   const loadPosts = async () => {
@@ -43,7 +43,10 @@ const Profile = () => {
     if (username) {
       try {
         console.log(username);
-        const res = await fetch(`http://localhost:5005/posts/user/${username}`, payload); // Port 5001 for postService
+        const res = await fetch(
+          `http://localhost:5005/posts/user/${username}`,
+          payload
+        ); // Port 5001 for postService
         const posts = await res.json();
         setPosts(posts);
         //console.log(posts);
@@ -51,7 +54,6 @@ const Profile = () => {
         console.error(err);
       }
     }
-
   };
 
   useEffect(() => {
@@ -70,8 +72,7 @@ const Profile = () => {
       <h2>Your Posts:</h2>
       <PostList posts={posts} refreshPosts={loadPosts} />
     </div>
+  );
+};
 
-  )
-}
-
-export default Profile
+export default Profile;
