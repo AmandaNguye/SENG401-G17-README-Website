@@ -14,12 +14,12 @@ const PostCard = ({ post, refreshPosts }) => {
   const upvoteColor = "#644aff";
   const downvoteColor = "#ffd25e";
 
+  const token = localStorage.getItem("token");
+
   const cancelVote = async (e) => {
     e.preventDefault();
     const postID = post._id;
-    const username = localStorage.getItem("username");
     const data = {
-      username: username,
       voteType: "",
     };
     const payload = {
@@ -27,6 +27,7 @@ const PostCard = ({ post, refreshPosts }) => {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
+        "x-access-token": token,
       },
       body: JSON.stringify(data),
     };
@@ -51,9 +52,7 @@ const PostCard = ({ post, refreshPosts }) => {
 
     e.preventDefault();
     const postID = post._id;
-    const username = localStorage.getItem("username");
     const data = {
-      username: username,
       voteType: "fame",
     };
     const payload = {
@@ -61,6 +60,7 @@ const PostCard = ({ post, refreshPosts }) => {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
+        "x-access-token": token,
       },
       body: JSON.stringify(data),
     };
@@ -85,9 +85,7 @@ const PostCard = ({ post, refreshPosts }) => {
 
     e.preventDefault();
     const postID = post._id;
-    const username = localStorage.getItem("username");
     const data = {
-      username: username,
       voteType: "lame",
     };
     const payload = {
@@ -95,6 +93,7 @@ const PostCard = ({ post, refreshPosts }) => {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
+        "x-access-token": token,
       },
       body: JSON.stringify(data),
     };
