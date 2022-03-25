@@ -1,0 +1,45 @@
+.condensed-container {
+  display: block;
+  width: 70%;
+  height: 50px;
+  margin: auto;
+  background: #363638;
+  -webkit-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.16);
+  -moz-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.16);
+  box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.16);
+  border-radius: 5px;
+  outline: solid thin gray;
+  /* padding-left: 10px;
+  padding-right: 10px; */
+  /* padding-bottom: 10px; */
+  padding-top: 10px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.text-box {
+  margin: auto;
+  background: #444447;
+  color: white;
+  width: 85%;
+  height: 80%;
+  border-radius: 10px;
+  align-content: center;
+  padding-left: 10px;
+  text-align: left;
+  line-height: 39px;
+}
+
+.text-box:hover {
+  cursor: pointer;
+  background: #5b5b5f;
+}
+
+@media screen and (max-width: 700px) {
+  .condensed-container {
+    width: 95%;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    /* padding-left: 10px; */
+  }
+}
