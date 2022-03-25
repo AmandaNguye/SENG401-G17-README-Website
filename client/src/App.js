@@ -7,22 +7,25 @@ import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
 import Dashboard from "./components/Dashboard/Dashboard";
 import Profile from "./components/Profile/Profile";
+import PostPage from "./components/PostPage/PostPage";
+import Greeting from "./components/Greeting/Greeting";
 
 const App = () => {
-  return (
-    <div className="wrapper">
-      <h1>README</h1>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Landing />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/profile" element={<Profile />} />
-        </Routes>
-      </BrowserRouter>
-    </div>
-  );
+	return (
+		<div className="wrapper">
+			<h1>README</h1>
+			<BrowserRouter>
+				<Routes>
+					<Route path="/" element={<Greeting />} />
+					<Route path="/register" element={<Register />} />
+					<Route path="/login" element={<Login />} />
+					<Route path="/dashboard" element={<Dashboard />} />
+					<Route path="/post-page/:id" element={<PostPage />} />
+					<Route path="/profile" element={<Profile />} />
+				</Routes>
+			</BrowserRouter>
+		</div>
+	);
 };
 
 export default App;

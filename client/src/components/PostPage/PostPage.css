@@ -1,0 +1,101 @@
+.page {
+	max-width: 70vw;
+	margin: auto;
+	color: black;
+	display: grid;
+	gap: 1em;
+	color: #fff;
+}
+
+.page--content {
+	background-color: #4b4b4f;
+	display: grid;
+	grid-template-columns: 8ch auto;
+	grid-template-rows: 5ch 1fr 5ch;
+	box-shadow: 0 0 0.5em #000;
+}
+
+.page--content--title {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	grid-column: 2 / 3;
+	grid-row: 1 / 2;
+	background-color: #000;
+}
+
+.page--content--body {
+	align-self: flex-start;
+	justify-self: flex-start;
+	min-height: 10em;
+	padding: 2em;
+	grid-column: 2 / 3;
+	grid-row: 2 / 2;
+}
+
+.page--content--famelame {
+	background-color: #262629;
+	grid-row: span 3;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.famed {
+	background-color: #b2a5ff;
+}
+
+.lamed {
+	background-color: #ffd25e;
+}
+.page--content--famelame--famecount {
+	padding: 0.5em;
+}
+
+.page--content--famelame--lamecount {
+	padding: 0.5em;
+}
+
+.page--metadata {
+	font-weight: bold;
+	color: #4b4b4f;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-around;
+	padding: 0.25em;
+}
+
+.page--comments {
+	background-color: #4b4b4f;
+	box-shadow: 0 0 0.5em #000;
+}
+
+.page--comments--top {
+	background-color: #000000;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 2em;
+}
+
+.page--comments--top--input {
+	margin-top: 2em;
+	max-width: 90%;
+	min-width: 90%;
+	max-height: 50vh;
+	min-height: 10vh;
+	font-size: 1.5em;
+	padding: 1em 1em;
+}
+
+.page--comments--top--input::placeholder {
+	text-align: center;
+}
+
+.page--comments--commentlist > * {
+	list-style: none;
+	padding: 2em;
+	margin-left: 1em;
+}
