@@ -7,6 +7,8 @@ const Profile = () => {
 
   const [username, setUsername] = useState("");
 
+  const [posts, setPosts] = useState([]);
+
   useEffect(() => {
     fetch("http://localhost:5005/isUserAuth", {
       headers: {
@@ -15,11 +17,9 @@ const Profile = () => {
     })
       .then((res) => res.json())
       .then((data) =>
-        data.isLoggedIn ? setUsername(data.username) : navigate("/dashboard")
+        data.isLoggedIn ? setUsername(data.username) : navigate("/login")
       );
   });
-
-  const [posts, setPosts] = useState([]);
 
   const handleLogout = (e) => {
     e.preventDefault();
@@ -40,23 +40,25 @@ const Profile = () => {
       },
     };
 
-    try {
-      const res = await fetch(
-        `http://localhost:5005/posts/user/${username}`,
-        payload
-      ); // Port 5001 for postService
-      const posts = await res.json();
-      console.log(posts);
-      setPosts(posts);
-      // console.log(posts);
-    } catch (err) {
-      console.error(err);
+    if (username) {
+      try {
+        console.log(username);
+        const res = await fetch(
+          `http://localhost:5005/posts/user/${username}`,
+          payload
+        ); // Port 5001 for postService
+        const posts = await res.json();
+        setPosts(posts);
+        //console.log(posts);
+      } catch (err) {
+        console.error(err);
+      }
     }
   };
 
   useEffect(() => {
     loadPosts();
-  }, []);
+  }, [username]);
 
   return (
     <div>
