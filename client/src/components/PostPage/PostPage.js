@@ -42,10 +42,14 @@ const PostPage = () => {
 			</section>
 			<section className="page--comments">
 				<div className="page--comments--top">
-					<h4 className="page--comments--top--title">Comment title</h4>
-					<textarea type="text" className="page--comments--top--input" />
+					<h3 className="page--comments--top--title">Comment title</h3>
+					<textarea
+						type="text"
+						className="page--comments--top--input"
+						placeholder="Enter comment here"
+					/>
 				</div>
-				<ul className="page--comments--commentList">
+				<ul className="page--comments--commentlist">
 					<li>1</li>
 					<li>2</li>
 					<li>3</li>

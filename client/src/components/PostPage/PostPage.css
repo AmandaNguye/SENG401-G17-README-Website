@@ -1,5 +1,7 @@
 .page {
-	border: 1px solid aqua;
+	box-sizing: border-box;
+	max-width: 70vw;
+	margin: auto;
 	color: black;
 	display: grid;
 	gap: 1em;
@@ -11,22 +13,23 @@
 	display: grid;
 	grid-template-columns: 10% 90%;
 	grid-template-rows: 20% 80%;
+	box-shadow: 0 0 0.5em #000;
 }
 
 .page--content--title {
-	align-self: flex-start;
 	text-align: center;
 	grid-column: 2 / 3;
 	grid-row: 1 / 2;
-	box-shadow: 0 0.1em 0.1em #262629;
-	padding-bottom: 1em;
+	background-color: #000;
+	padding-top: 2em;
+	padding-bottom: 3em;
 }
 
 .page--content--body {
 	align-self: flex-start;
 	justify-self: flex-start;
+	margin-top: 2em;
 	padding: 2em;
-	top: 0;
 	grid-column: 2 / 3;
 	grid-row: 2 / 2;
 }
@@ -41,20 +44,31 @@
 
 .page--comments {
 	background-color: #4b4b4f;
+	box-shadow: 0 0 0.5em #000;
 }
 
 .page--comments--top {
-	background-color: #262629;
-	box-shadow: 0 0.1em 0.2em #000;
-	padding-bottom: 2em;
+	background-color: #000000;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	padding: 3em;
 }
 
 .page--comments--top--input {
-	max-width: 80%;
-	min-width: 80%;
+	margin-top: 2em;
+	max-width: 90%;
+	min-width: 90%;
 	max-height: 50vh;
 	min-height: 5vh;
+}
+
+.page--comments--top--input::placeholder {
+	font-size: 1.5em;
+	text-align: center;
+}
+.page--comments--commentlist > * {
+	list-style: none;
+	padding: 2em;
+	margin-left: 1em;
 }

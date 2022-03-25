@@ -8,6 +8,7 @@ import Register from "./components/Register/Register";
 import Dashboard from "./components/Dashboard/Dashboard";
 import Profile from "./components/Profile/Profile";
 import PostPage from "./components/PostPage/PostPage";
+import Greeting from "./components/Greeting/Greeting";
 
 const App = () => {
 	return (
@@ -15,7 +16,7 @@ const App = () => {
 			<h1>README</h1>
 			<BrowserRouter>
 				<Routes>
-					<Route path="/" element={<Landing />} />
+					<Route path="/" element={<Greeting />} />
 					<Route path="/register" element={<Register />} />
 					<Route path="/login" element={<Login />} />
 					<Route path="/dashboard" element={<Dashboard />} />
