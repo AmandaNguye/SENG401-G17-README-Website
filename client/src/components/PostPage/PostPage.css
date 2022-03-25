@@ -60,13 +60,15 @@
 	max-width: 90%;
 	min-width: 90%;
 	max-height: 50vh;
-	min-height: 5vh;
+	min-height: 10vh;
+	font-size: 1.5em;
+	padding: 1em 1em;
 }
 
 .page--comments--top--input::placeholder {
-	font-size: 1.5em;
 	text-align: center;
 }
+
 .page--comments--commentlist > * {
 	list-style: none;
 	padding: 2em;
