@@ -52,20 +52,19 @@
 	padding: 0.5em;
 }
 
+.page--metadata {
+	color: #ccc;
+	display: flex;
+	align-items: center;
+	padding: 1em;
+}
+
 .page--metadata__famed {
 	background-color: #b2a5ff;
 }
 
 .page--metadata__lamed {
 	background-color: #ffd25e;
-}
-
-.page--metadata {
-	background-color: #000;
-	opacity: 20%;
-	display: flex;
-	align-items: center;
-	padding: 1em;
 }
 
 .page--metadata--creator {

@@ -45,14 +45,20 @@ const PostPage = () => {
 					></IconButton>
 					<div className="page--content--famelame--lamecount">{lame_count}</div>
 				</div>
-				<div className="page--metadata page--metadata__famed page--metadata__lamed">
+				<div
+					className={
+						fame_count >= lame_count
+							? "page--metadata page--metadata__famed"
+							: "page--metadata page--metadata__lamed"
+					}
+				>
 					<p className="page--metadata--creator">Author: {creator}</p>
 					<p className="page--metadata--tag">Tag: {tag}</p>
 				</div>
 			</section>
 			<section className="page--comments">
 				<div className="page--comments--top">
-					<h3 className="page--comments--top--title">C O M M E N T S</h3>
+					<h3 className={"page--comments--top--title"}>C O M M E N T S</h3>
 					<textarea
 						type="text"
 						className="page--comments--top--input"
