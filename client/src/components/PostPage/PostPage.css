@@ -94,8 +94,30 @@
 	text-align: center;
 }
 
+.page--comments--top--input--submit {
+	margin-left: auto;
+	margin-right: 10%;
+	padding: 0.5em;
+	font-size: 0.8em;
+}
+
+.page--comments--top--input--submit input {
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	padding: 0.2em;
+	border-radius: 0.1em;
+	border: none;
+	margin-left: 1ch;
+}
+
+.page--comments--top--input--submit input:hover {
+	background-color: #b2a5ff;
+}
+
+.page--comments--commentlist {
+	margin: 1em 0;
+}
 .page--comments--commentlist > * {
 	list-style: none;
-	padding: 2em;
-	margin-left: 1em;
+	padding: 0.5em;
 }
