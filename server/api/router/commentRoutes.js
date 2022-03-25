@@ -11,16 +11,10 @@ const router = express.Router();
 
 router.get("/:p_id/comments/", async (req, res, next) => {
     const commentURL = process.env.COMMENT_URL + "/posts/" + req.params.p_id + "/comments";
-    const { page = 0, limit = 10, q } = req.query;
+    const { page = 0, limit = 10 } = req.query;
     let url;
-    if (q) {
-        url = commentURL + "/posts/?page=" + page
-            + "&limit=" + limit
-            + "&q=" + q;
-    }
-    else {
-        url = commentURL + "?page=" + page + "&limit=" + limit;
-    }
+    url = commentURL + "?page=" + page + "&limit=" + limit;
+
     try {
         const response = await got.get(url, {
             headers: {
@@ -33,23 +27,6 @@ router.get("/:p_id/comments/", async (req, res, next) => {
         next(err);
     }
 });
-
-
-//WIP
-/*router.get("/:p_id/comments/user/:name", async (req, res, next) => {
-    const commentURL = process.env.COMMENT_URL + "/posts/" + req.params.p_id + "/comments";
-    try {
-        const response = await got.get(commentURL + '/user/' + req.params.name, {
-            headers: {
-                "x-access-token": req.headers["x-access-token"]
-            }
-        }).json();
-        res.send(response);
-    } catch (err) {
-        next(err)
-    };
-});
-*/
 
 router.get("/:p_id/comments/:c_id", async (req, res, next) => {
     const commentURL = process.env.COMMENT_URL + "/posts/" + req.params.p_id + "/comments";
