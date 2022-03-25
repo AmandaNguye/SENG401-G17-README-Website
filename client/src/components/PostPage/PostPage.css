@@ -1,0 +1,60 @@
+.page {
+	border: 1px solid aqua;
+	color: black;
+	display: grid;
+	gap: 1em;
+	color: #fff;
+}
+
+.page--content {
+	background-color: #4b4b4f;
+	display: grid;
+	grid-template-columns: 10% 90%;
+	grid-template-rows: 20% 80%;
+}
+
+.page--content--title {
+	align-self: flex-start;
+	text-align: center;
+	grid-column: 2 / 3;
+	grid-row: 1 / 2;
+	box-shadow: 0 0.1em 0.1em #262629;
+	padding-bottom: 1em;
+}
+
+.page--content--body {
+	align-self: flex-start;
+	justify-self: flex-start;
+	padding: 2em;
+	top: 0;
+	grid-column: 2 / 3;
+	grid-row: 2 / 2;
+}
+
+.page--content--likedislike {
+	background-color: #262629;
+	grid-row: span 2;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.page--comments {
+	background-color: #4b4b4f;
+}
+
+.page--comments--top {
+	background-color: #262629;
+	box-shadow: 0 0.1em 0.2em #000;
+	padding-bottom: 2em;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.page--comments--top--input {
+	max-width: 80%;
+	min-width: 80%;
+	max-height: 50vh;
+	min-height: 5vh;
+}
