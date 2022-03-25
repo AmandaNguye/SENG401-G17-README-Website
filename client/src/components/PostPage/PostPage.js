@@ -1,12 +1,12 @@
-import React from "react";
-import { useNavigate } from "react-router";
+import React, { useContext } from "react";
 import { useParams } from "react-router";
 import { IconButton } from "@chakra-ui/react";
-import { TriangleUpIcon, TriangleDownIcon, UpDownIcon } from "@chakra-ui/icons";
-
+import { TriangleUpIcon, TriangleDownIcon } from "@chakra-ui/icons";
+import { PostContext } from "../Contexts/PostContext";
 import "./PostPage.css";
 
 const PostPage = () => {
+	const [posts, setPosts] = useContext(PostContext);
 	const { id } = useParams();
 
 	const token = localStorage.getItem("token");
