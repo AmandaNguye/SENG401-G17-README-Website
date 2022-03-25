@@ -20,7 +20,14 @@ const App = () => {
 					<Route path="/" element={<Greeting />} />
 					<Route path="/register" element={<Register />} />
 					<Route path="/login" element={<Login />} />
-					<Route path="/dashboard" element={<Dashboard />} />
+					<Route
+						path="/dashboard"
+						element={
+							<PostProvider>
+								<Dashboard />
+							</PostProvider>
+						}
+					/>
 					<Route path="/profile" element={<Profile />} />
 					<Route
 						path="/post-page:id"

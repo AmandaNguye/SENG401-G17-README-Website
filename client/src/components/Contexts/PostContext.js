@@ -5,13 +5,14 @@ export const PostContext = createContext();
 export const PostProvider = (props) => {
 	const [posts, setPosts] = useState([
 		{
+			_id: 1,
 			title: "Lorem ipsum dolor sit amet.",
 			content:
 				"Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis non, corrupti culpa magnam atque facilis?",
 			tag: "meme",
 			fame_count: 1,
-			famer: 1,
-			lamer: 1,
+			famer: [],
+			lamer: [],
 			creator: 1,
 		},
 	]);
