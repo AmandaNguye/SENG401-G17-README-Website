@@ -3,12 +3,12 @@ import { useNavigate } from "react-router-dom";
 
 import PostList from "../PostList/PostList";
 import PostForm from "../PostForm/PostForm";
-import { PostContext } from "../Contexts/PostContext";
 import CondensedPostForm from "../CondensedPostForm/CondensedPostForm";
 
 import "./Dashboard.css";
 
 const Dashboard = () => {
+	const [posts, setPosts] = useState([]);
 	const navigate = useNavigate();
 
 	const [posting, setPosting] = useState(false);
@@ -35,9 +35,6 @@ const Dashboard = () => {
 		e.preventDefault();
 		navigate("/profile");
 	};
-
-	// const [posts, setPosts] = useState([]);
-	const [posts, setPosts] = useContext(PostContext);
 
 	const loadPosts = async () => {
 		const payload = {

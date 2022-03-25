@@ -9,7 +9,6 @@ import Dashboard from "./components/Dashboard/Dashboard";
 import Profile from "./components/Profile/Profile";
 import PostPage from "./components/PostPage/PostPage";
 import Greeting from "./components/Greeting/Greeting";
-import { PostProvider } from "./components/Contexts/PostContext";
 
 const App = () => {
 	return (
@@ -20,23 +19,9 @@ const App = () => {
 					<Route path="/" element={<Greeting />} />
 					<Route path="/register" element={<Register />} />
 					<Route path="/login" element={<Login />} />
-					<Route
-						path="/dashboard"
-						element={
-							<PostProvider>
-								<Dashboard />
-							</PostProvider>
-						}
-					/>
+					<Route path="/dashboard" element={<Dashboard />} />
+					<Route path="/post-page/:id" element={<PostPage />} />
 					<Route path="/profile" element={<Profile />} />
-					<Route
-						path="/post-page:id"
-						element={
-							<PostProvider>
-								<PostPage />
-							</PostProvider>
-						}
-					/>
 				</Routes>
 			</BrowserRouter>
 		</div>
