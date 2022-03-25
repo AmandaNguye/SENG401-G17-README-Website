@@ -3,6 +3,7 @@ import jwt from "jsonwebtoken";
 
 import { registerUser } from "../controllers/registerUser.js";
 import { login } from "../controllers/login.js";
+import { find } from "../controllers/find.js";
 
 const router = express.Router();
 
@@ -28,6 +29,7 @@ function verifyJWT(req, res, next) {
 
 router.post("/register", registerUser);
 router.post("/login", login);
+router.get("/", verifyJWT, find)
 router.get("/isUserAuth", verifyJWT, (req, res) => {
   res.json({ isLoggedIn: true, username: req.user.username });
 });

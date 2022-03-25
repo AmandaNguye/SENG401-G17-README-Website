@@ -63,7 +63,7 @@ router.post("/:p_id/comments/", verifyJWTRequired, createComment);
 
 router.delete("/:p_id/comments/:c_id", verifyJWTRequired, deleteComment);
 
-router.put("/:p_id/comments/:c_id/vote", verifyJWTRequired, voteComment);
+router.patch("/:p_id/comments/:c_id/vote", verifyJWTRequired, voteComment);
 
 router.patch("/:p_id/comments/:c_id", verifyJWTRequired, updateComment);
 
