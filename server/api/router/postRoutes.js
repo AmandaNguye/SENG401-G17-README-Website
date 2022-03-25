@@ -36,7 +36,7 @@ router.get("/", async (req, res, next) => {
 router.get("/user/:name", async (req, res, next) => {
     try {
         const { page = 0, limit = 10 } = req.query;
-        const url = postURL + "/user/?page=" + page + "&limit=" + limit;
+        const url = postURL + "/user/" + req.params.name + "?page=" + page + "&limit=" + limit;
         const response = await got.get(url, {
             headers: {
                 "x-access-token": req.headers["x-access-token"]

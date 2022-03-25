@@ -8,7 +8,7 @@ const Landing = () => {
 
   useEffect(() => {
     const checkLoggedIn = () => {
-      fetch("http://localhost:5000/isUserAuth", {
+      fetch("http://localhost:5005/isUserAuth", {
         headers: {
           "x-access-token": localStorage.getItem("token"),
         },

@@ -9,7 +9,7 @@ export const loadPosts = async () => {
   };
 
   try {
-    const res = await fetch(`http://localhost:5001/posts`, payload); // Port 5001 for postService
+    const res = await fetch(`http://localhost:5005/posts`, payload);
     const posts = await res.json();
     return posts;
     // console.log(posts);
