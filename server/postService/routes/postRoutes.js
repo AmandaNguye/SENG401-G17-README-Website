@@ -53,7 +53,7 @@ function verifyJWT(req, res, next) {
 
 router.get("/", verifyJWT, getPosts);
 
-router.get("/user", verifyJWT, getPostsByUser);
+router.get("/user/:user", verifyJWT, getPostsByUser);
 
 router.get("/:id", verifyJWT, getPostByID);
 
@@ -61,7 +61,7 @@ router.post("/", verifyJWTRequired, createPost);
 
 router.delete("/:id", verifyJWTRequired, deletePost);
 
-router.put("/:id/vote", verifyJWTRequired, votePosts);
+router.patch("/:id/vote", verifyJWTRequired, votePosts);
 
 router.patch("/:id", verifyJWTRequired, updatePost);
 

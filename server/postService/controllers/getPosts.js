@@ -62,13 +62,14 @@ export const getPosts = async (req, res) => {
  * @param {*} req all parameter is in in url query format ("/posts?")
  * 1. page: the current page number
  * 2. limit: the amount of post within a page
- * 3. user: the user that is being queried (required)
+ * 
+ * parameter user indicate the user being queried for
  * @param {*} res
  */
 export const getPostsByUser = async (req, res) => {
-  const { page = 0, limit = 10, q } = req.query;
+  const { page = 0, limit = 10 } = req.query;
   const currentUser = req.user.username;
-  const queryUser = req.query.user;
+  const queryUser = req.params.user;
   var posts;
 
   if (!queryUser) {

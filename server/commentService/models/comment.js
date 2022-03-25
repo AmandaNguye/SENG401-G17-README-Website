@@ -5,7 +5,7 @@ const commentSchema = mongoose.Schema(
     content: {
       type: String,
       required: true,
-      minLength: 15,
+      minLength: 5,
     },
     fame_count: {
       type: Number,
@@ -17,12 +17,13 @@ const commentSchema = mongoose.Schema(
       immutable: true,
     },
     famer: {
-      type : [String]
+      type: [String],
+      default: []
     },
     lamer: {
-      type : [String]
-    }
-    ,
+      type: [String],
+      default: []
+    },
     creator: {
       type: String,
       required: true,

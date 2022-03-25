@@ -13,7 +13,7 @@ export const deletePost = async (req, res) => {
 			creator: username
 		});
 		if (result.deletedCount == 1) {
-			res.status(204).send({ message: "Successfully Deleted" });
+			res.status(204).json({ message: "Successfully Deleted" });
 		}
 		else {
 			res.status(400).send();
