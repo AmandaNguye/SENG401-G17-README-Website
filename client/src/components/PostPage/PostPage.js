@@ -6,6 +6,7 @@ import "./PostPage.css";
 
 const PostPage = () => {
 	const [post, setPost] = useState([]);
+	const [comments, setComments] = useState([]);
 
 	const loadPost = async (e) => {
 		const payload = {
@@ -23,7 +24,25 @@ const PostPage = () => {
 			console.error(err);
 		}
 	};
-	useEffect(loadPost, []);
+
+	const loadComment = async (e) => {
+		const payload = {
+			method: "GET `http://localhost:5005/posts/:p_id/comments/`",
+			headers: {
+				"x-access-token": localStorage.getItem("token"),
+			},
+		};
+
+		try {
+			const res = await fetch(`http://localhost:5005/posts/${id}/comments/`);
+			const comments = await res.json;
+			setComments(comments);
+		} catch (err) {
+			console.error(err);
+		}
+	};
+
+	useEffect(loadPost, loadComment, []);
 
 	const { id } = useParams();
 
