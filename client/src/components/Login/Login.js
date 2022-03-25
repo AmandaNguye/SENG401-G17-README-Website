@@ -12,7 +12,7 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    const response = await fetch("http://localhost:5000/login", {
+    const response = await fetch("http://localhost:5005/login", {
       method: "POST",
       headers: {
         "Content-type": "application/json",
@@ -39,7 +39,7 @@ const Login = () => {
 
   useEffect(() => {
     const checkLoggedIn = () => {
-      fetch("http://localhost:5000/isUserAuth", {
+      fetch("http://localhost:5005/isUserAuth", {
         headers: {
           "x-access-token": localStorage.getItem("token"),
         },

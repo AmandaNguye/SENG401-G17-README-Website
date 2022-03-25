@@ -23,7 +23,7 @@ const PostCard = ({ post, refreshPosts }) => {
       voteType: "",
     };
     const payload = {
-      method: "PUT",
+      method: "PATCH",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -33,7 +33,7 @@ const PostCard = ({ post, refreshPosts }) => {
     };
     try {
       const res = await fetch(
-        `http://localhost:5001/posts/${postID}/vote`,
+        `http://localhost:5005/posts/${postID}/vote`,
         payload
       );
       if (res.ok) {
@@ -56,7 +56,7 @@ const PostCard = ({ post, refreshPosts }) => {
       voteType: "fame",
     };
     const payload = {
-      method: "PUT",
+      method: "PATCH",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -66,7 +66,7 @@ const PostCard = ({ post, refreshPosts }) => {
     };
     try {
       const res = await fetch(
-        `http://localhost:5001/posts/${postID}/vote`,
+        `http://localhost:5005/posts/${postID}/vote`,
         payload
       );
       if (res.ok) {
@@ -89,7 +89,7 @@ const PostCard = ({ post, refreshPosts }) => {
       voteType: "lame",
     };
     const payload = {
-      method: "PUT",
+      method: "PATCH",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -99,7 +99,7 @@ const PostCard = ({ post, refreshPosts }) => {
     };
     try {
       const res = await fetch(
-        `http://localhost:5001/posts/${postID}/vote`,
+        `http://localhost:5005/posts/${postID}/vote`,
         payload
       );
       if (res.ok) {
