@@ -4,7 +4,6 @@ import { IconButton } from "@chakra-ui/react";
 import { TriangleUpIcon, TriangleDownIcon } from "@chakra-ui/icons";
 import Comment from "../Comment/Comment";
 import "./PostPage.css";
-import { calcLength } from "framer-motion";
 
 const PostPage = () => {
 	let user;
@@ -196,7 +195,6 @@ const PostPage = () => {
 				payload
 			);
 			if (res.ok) {
-				console.log("here");
 				loadComment();
 			}
 			setText("");

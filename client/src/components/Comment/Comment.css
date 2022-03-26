@@ -45,6 +45,10 @@
 	/* overflow-y: ; */
 }
 
+.comment-text span {
+	color: #b2a5ff;
+}
+
 .card-footer {
 	justify-content: left;
 }

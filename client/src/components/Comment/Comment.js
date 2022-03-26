@@ -147,7 +147,9 @@ const CommentCard = ({ comment, refreshComments }) => {
 					/>
 				</div>
 				<div className="comment-content">
-					<p className="comment-text">{comment.content}</p>
+					<p className="comment-text">
+						<span>{comment.creator}</span> | {comment.content}
+					</p>
 				</div>
 			</div>
 		</div>
