@@ -6,10 +6,10 @@ import Comment from "../Comment/Comment";
 import "./PostPage.css";
 
 const PostPage = () => {
-	let user;
+	const [user, setUser] = useState("");
 	const [post, setPost] = useState([]);
 	const [comments, setComments] = useState([]);
-	const [numComments, setNumComments] = useState(5);
+	const [numComments, setNumComments] = useState(0);
 	const [text, setText] = useState("");
 	const { id } = useParams();
 
@@ -57,27 +57,36 @@ const PostPage = () => {
 					"x-access-token": localStorage.getItem("token"),
 				},
 			});
-			user = await res.json();
+			setUser((await res.json()).username);
 		} catch (err) {
 			console.error(err);
 		}
 	};
 
 	useEffect(() => {
+		loadUsername();
 		loadPost();
 		loadComment();
-		loadUsername();
+		loadMoreComments();
 	}, []);
 
 	const { content, creator, fame_count, famed, lamed, tag, title } = post;
 
 	const CommentObjects = comments
 		.sort((a, b) => b.fame_count - a.fame_count)
+		.sort((a, b) =>
+			user === a.creator && user === b.creator
+				? b.fame_count - a.fame_count
+				: user === a.creator
+				? -1
+				: user === b.creator
+				? 1
+				: 0
+		)
 		.slice(0, numComments)
 		.map((e) => (
 			<Comment key={e._id} comment={e} refreshComments={loadComment}></Comment>
 		));
-
 	const loadMoreComments = () => {
 		setNumComments((prevNum) => prevNum + 5);
 	};
