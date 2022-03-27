@@ -89,7 +89,12 @@ const PostPage = () => {
 		)
 		.slice(0, numComments)
 		.map((e) => (
-			<Comment key={e._id} comment={e} refreshComments={loadComment}></Comment>
+			<Comment
+				key={e._id}
+				comment={e}
+				refreshComments={loadComment}
+				canDelete={user == e.creator}
+			></Comment>
 		));
 
 	const cancelVote = async (e) => {
