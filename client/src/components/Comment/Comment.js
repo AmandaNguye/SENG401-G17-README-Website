@@ -46,7 +46,6 @@ const CommentCard = ({ comment, refreshComments }) => {
   const upvote = async (e) => {
     const postID = comment.post;
     const commentID = comment._id;
-
     if (famed) {
       cancelVote(e);
       return;
@@ -76,6 +75,7 @@ const CommentCard = ({ comment, refreshComments }) => {
       console.log(error);
     }
   };
+
 
 
   const downvote = async (e) => {

@@ -7,6 +7,7 @@ import "./Landing.css";
 const Landing = () => {
   const navigate = useNavigate();
 
+
   useEffect(() => {
     const checkLoggedIn = () => {
       fetch(`${process.env.REACT_APP_API_URL}/isUserAuth`, {

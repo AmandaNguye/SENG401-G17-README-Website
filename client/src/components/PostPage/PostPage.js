@@ -21,6 +21,7 @@ const PostPage = () => {
       },
     };
 
+
     try {
       const res = await fetch(
         `${process.env.REACT_APP_API_URL}/posts/${id}`,
@@ -43,30 +44,31 @@ const PostPage = () => {
       },
     };
 
-    try {
-      const res = await fetch(
-        `${process.env.REACT_APP_API_URL}/posts/${id}/comments?limit=99`,
-        payload
-      );
-      const comments = await res.json();
-      setComments(comments);
-    } catch (err) {
-      console.error(err);
-    }
-  };
+		try {
+			const res = await fetch(
+				`${process.env.REACT_APP_API_URL}/posts/${id}/comments?limit=999999`,
+				payload
+			);
+			const comments = await res.json();
+			setComments(comments);
+		} catch (err) {
+			console.error(err);
+		}
+	};
 
-  const loadUsername = async () => {
-    try {
-      const res = await fetch(`${process.env.REACT_APP_API_URL}/isUserAuth`, {
-        headers: {
-          "x-access-token": localStorage.getItem("token"),
-        },
-      });
-      user = await res.json();
-    } catch (err) {
-      console.error(err);
-    }
-  };
+	const loadUsername = async () => {
+		try {
+			const res = await fetch(`${process.env.REACT_APP_API_URL}/isUserAuth`, {
+				headers: {
+					"x-access-token": localStorage.getItem("token"),
+				},
+			});
+			setUser((await res.json()).username);
+		} catch (err) {
+			console.error(err);
+		}
+	};
+
 
   useEffect(() => {
     loadPost();
@@ -76,42 +78,53 @@ const PostPage = () => {
 
   const { content, creator, fame_count, famed, lamed, tag, title } = post;
 
-  const CommentObjects = comments
-    .map((e) => (
-      <Comment key={e._id} comment={e} refreshComments={loadComment}></Comment>
-    ))
-    .slice(0, numComments);
+	const CommentObjects = comments
+		.sort((a, b) => b.fame_count - a.fame_count)
+		.sort((a, b) =>
+			user === a.creator && user === b.creator
+				? b.fame_count - a.fame_count
+				: user === a.creator
+				? -1
+				: user === b.creator
+				? 1
+				: 0
+		)
+		.slice(0, numComments)
+		.map((e) => (
+			<Comment key={e._id} comment={e} refreshComments={loadComment}></Comment>
+		));
+
+
+	const cancelVote = async (e) => {
+		e.preventDefault();
+		const postID = id;
+		const data = {
+			voteType: "",
+		};
+		const payload = {
+			method: "PATCH",
+			headers: {
+				Accept: "application/json",
+				"Content-Type": "application/json",
+				"x-access-token": localStorage.getItem("token"),
+			},
+			body: JSON.stringify(data),
+		};
+		try {
+			const res = await fetch(
+				`${process.env.REACT_APP_API_URL}/posts/${postID}/vote`,
+				payload
+			);
+			if (res.ok) {
+				loadPost();
+			}
+		} catch (error) {
+			console.error(error);
+		}
+	};
 
   const loadMoreComments = () => {
     setNumComments((prevNum) => prevNum + 5);
-  };
-
-  const cancelVote = async (e) => {
-    e.preventDefault();
-    const postID = id;
-    const data = {
-      voteType: "",
-    };
-    const payload = {
-      method: "PATCH",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        "x-access-token": localStorage.getItem("token"),
-      },
-      body: JSON.stringify(data),
-    };
-    try {
-      const res = await fetch(
-        `${process.env.REACT_APP_API_URL}/posts/${postID}/vote`,
-        payload
-      );
-      if (res.ok) {
-        loadPost();
-      }
-    } catch (error) {
-      console.error(error);
-    }
   };
 
   const upvote = async (e) => {
@@ -178,7 +191,6 @@ const PostPage = () => {
       console.error(error);
     }
   };
-
 
 	const UpvoteIcon = (
 		<TriangleUpIcon w={20} h={20} _hover={{ color: "#644aff" }} />
