@@ -72,7 +72,9 @@ const PostPage = () => {
 	const { content, creator, fame_count, famed, lamed, tag, title } = post;
 
 	const CommentObjects = comments
-		.map((e) => <Comment comment={e} refreshComments={loadComment}></Comment>)
+		.map((e) => (
+			<Comment key={e._id} comment={e} refreshComments={loadComment}></Comment>
+		))
 		.slice(0, numComments);
 
 	const loadMoreComments = () => {
