@@ -32,7 +32,7 @@ const CommentCard = ({ comment, refreshComments }) => {
 		};
 		try {
 			const res = await fetch(
-				`http://localhost:5005/posts/${postID}/comments/${commentID}/vote`,
+				`https://api-gqqz6zzd4a-uc.a.run.app/posts/${postID}/comments/${commentID}/vote`,
 				payload
 			);
 			if (res.ok) {
@@ -66,7 +66,7 @@ const CommentCard = ({ comment, refreshComments }) => {
 		};
 		try {
 			const res = await fetch(
-				`http://localhost:5005/posts/${postID}/comments/${commentID}/vote`,
+				`https://api-gqqz6zzd4a-uc.a.run.app/posts/${postID}/comments/${commentID}/vote`,
 				payload
 			);
 			if (res.ok) {
@@ -100,7 +100,7 @@ const CommentCard = ({ comment, refreshComments }) => {
 		};
 		try {
 			const res = await fetch(
-				`http://localhost:5005/posts/${postID}/comments/${commentID}/vote`,
+				`https://api-gqqz6zzd4a-uc.a.run.app/posts/${postID}/comments/${commentID}/vote`,
 				payload
 			);
 			if (res.ok) {

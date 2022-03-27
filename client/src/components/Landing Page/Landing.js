@@ -9,7 +9,7 @@ const Landing = () => {
 
 	useEffect(() => {
 		const checkLoggedIn = () => {
-			fetch("http://localhost:5005/isUserAuth", {
+			fetch("https://api-gqqz6zzd4a-uc.a.run.app/isUserAuth", {
 				headers: {
 					"x-access-token": localStorage.getItem("token"),
 				},

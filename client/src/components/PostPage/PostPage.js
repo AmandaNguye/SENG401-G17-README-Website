@@ -22,7 +22,10 @@ const PostPage = () => {
 		};
 
 		try {
-			const res = await fetch(`http://localhost:5005/posts/${id}`, payload);
+			const res = await fetch(
+				`https://api-gqqz6zzd4a-uc.a.run.app/posts/${id}`,
+				payload
+			);
 			const posts = await res.json();
 			setPost(posts);
 		} catch (err) {
@@ -40,7 +43,7 @@ const PostPage = () => {
 
 		try {
 			const res = await fetch(
-				`http://localhost:5005/posts/${id}/comments?limit=999999`,
+				`https://api-gqqz6zzd4a-uc.a.run.app/posts/${id}/comments?limit=999999`,
 				payload
 			);
 			const comments = await res.json();
@@ -52,11 +55,14 @@ const PostPage = () => {
 
 	const loadUsername = async () => {
 		try {
-			const res = await fetch("http://localhost:5005/isUserAuth", {
-				headers: {
-					"x-access-token": localStorage.getItem("token"),
-				},
-			});
+			const res = await fetch(
+				"https://api-gqqz6zzd4a-uc.a.run.app/isUserAuth",
+				{
+					headers: {
+						"x-access-token": localStorage.getItem("token"),
+					},
+				}
+			);
 			setUser((await res.json()).username);
 		} catch (err) {
 			console.error(err);
@@ -108,7 +114,7 @@ const PostPage = () => {
 		};
 		try {
 			const res = await fetch(
-				`http://localhost:5005/posts/${postID}/vote`,
+				`https://api-gqqz6zzd4a-uc.a.run.app/posts/${postID}/vote`,
 				payload
 			);
 			if (res.ok) {
@@ -141,7 +147,7 @@ const PostPage = () => {
 		};
 		try {
 			const res = await fetch(
-				`http://localhost:5005/posts/${postID}/vote`,
+				`https://api-gqqz6zzd4a-uc.a.run.app/posts/${postID}/vote`,
 				payload
 			);
 			if (res.ok) {
@@ -174,7 +180,7 @@ const PostPage = () => {
 		};
 		try {
 			const res = await fetch(
-				`http://localhost:5005/posts/${postID}/vote`,
+				`https://api-gqqz6zzd4a-uc.a.run.app/posts/${postID}/vote`,
 				payload
 			);
 			if (res.ok) {
@@ -210,7 +216,7 @@ const PostPage = () => {
 
 		try {
 			const res = await fetch(
-				`http://localhost:5005/posts/${id}/comments`,
+				`https://api-gqqz6zzd4a-uc.a.run.app/posts/${id}/comments`,
 				payload
 			);
 			if (res.ok) {
