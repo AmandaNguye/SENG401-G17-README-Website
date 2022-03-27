@@ -16,17 +16,18 @@ const Dashboard = () => {
 
 	const [posting, setPosting] = useState(false);
 
-	useEffect(() => {
-		fetch("${process.env.REACT_APP_API_URL}/isUserAuth", {
-			headers: {
-				"x-access-token": localStorage.getItem("token"),
-			},
-		})
-			.then((res) => res.json())
-			.then((data) =>
-				data.isLoggedIn ? setIsLoggedIn(true) : navigate("/login")
-			);
-	});
+
+  useEffect(() => {
+    fetch(`${process.env.REACT_APP_API_URL}/isUserAuth`, {
+      headers: {
+        "x-access-token": localStorage.getItem("token"),
+      },
+    })
+      .then((res) => res.json())
+      .then((data) =>
+        data.isLoggedIn ? setIsLoggedIn(true) : navigate("/login")
+      );
+  });
 
 	const handleLogout = (e) => {
 		e.preventDefault();
@@ -58,18 +59,19 @@ const Dashboard = () => {
 			},
 		};
 
-		try {
-			const res = await fetch(
-				`${process.env.REACT_APP_API_URL}/posts?page=${currPage}`,
-				payload
-			);
-			const posts = await res.json();
-			setPosts(posts);
-			// console.log(posts);
-		} catch (err) {
-			console.error(err);
-		}
-	};
+
+    try {
+      const res = await fetch(
+        `${process.env.REACT_APP_API_URL}/posts?page=${currPage}`,
+        payload
+      );
+      const posts = await res.json();
+      setPosts(posts);
+      // console.log(posts);
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
 	useEffect(() => {
 		loadPosts();

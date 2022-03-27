@@ -10,18 +10,19 @@ const Profile = () => {
 
 	const [posts, setPosts] = useState([]);
 
-	useEffect(() => {
-		fetch(`${process.env.REACT_APP_API_URL}/isUserAuth`, {
-			headers: {
-				"x-access-token": localStorage.getItem("token"),
-			},
-		})
-			.then((res) => res.json())
-			.then((data) =>
-				data.isLoggedIn ? setUsername(data.username) : navigate("/login")
-			)
-			.then(() => setIsLoggedIn(true));
-	});
+
+  useEffect(() => {
+    fetch(`${process.env.REACT_APP_API_URL}/isUserAuth`, {
+      headers: {
+        "x-access-token": localStorage.getItem("token"),
+      },
+    })
+      .then((res) => res.json())
+      .then((data) =>
+        data.isLoggedIn ? setUsername(data.username) : navigate("/login")
+      )
+      .then(() => setIsLoggedIn(true));
+  });
 
 	const handleLogout = (e) => {
 		e.preventDefault();
@@ -43,21 +44,22 @@ const Profile = () => {
 			},
 		};
 
-		if (username) {
-			try {
-				console.log(username);
-				const res = await fetch(
-					`${process.env.REACT_APP_API_URL}/posts/user/${username}`,
-					payload
-				); // Port 5001 for postService
-				const posts = await res.json();
-				setPosts(posts);
-				//console.log(posts);
-			} catch (err) {
-				console.error(err);
-			}
-		}
-	};
+
+    if (username) {
+      try {
+        console.log(username);
+        const res = await fetch(
+          `${process.env.REACT_APP_API_URL}/posts/user/${username}`,
+          payload
+        ); // Port 5001 for postService
+        const posts = await res.json();
+        setPosts(posts);
+        //console.log(posts);
+      } catch (err) {
+        console.error(err);
+      }
+    }
+  };
 
 	useEffect(() => {
 		loadPosts();

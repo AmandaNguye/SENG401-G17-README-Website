@@ -12,16 +12,17 @@ const Login = () => {
 	const handleLogin = async (e) => {
 		e.preventDefault();
 
-		const response = await fetch(`${process.env.REACT_APP_API_URL}/login`, {
-			method: "POST",
-			headers: {
-				"Content-type": "application/json",
-			},
-			body: JSON.stringify({
-				username,
-				password,
-			}),
-		});
+
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/login`, {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({
+        username,
+        password,
+      }),
+    });
 
 		const data = await response.json();
 
@@ -37,18 +38,19 @@ const Login = () => {
 		}
 	};
 
-	useEffect(() => {
-		const checkLoggedIn = () => {
-			fetch(`${process.env.REACT_APP_API_URL}/isUserAuth`, {
-				headers: {
-					"x-access-token": localStorage.getItem("token"),
-				},
-			})
-				.then((res) => res.json())
-				.then((data) => (data.isLoggedIn ? navigate("/dashboard") : null));
-		};
-		checkLoggedIn();
-	});
+
+  useEffect(() => {
+    const checkLoggedIn = () => {
+      fetch(`${process.env.REACT_APP_API_URL}/isUserAuth`, {
+        headers: {
+          "x-access-token": localStorage.getItem("token"),
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => (data.isLoggedIn ? navigate("/dashboard") : null));
+    };
+    checkLoggedIn();
+  });
 
 	return (
 		<div className="login-wrapper">

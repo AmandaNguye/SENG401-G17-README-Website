@@ -14,17 +14,18 @@ const Register = () => {
 	const registerUser = async (e) => {
 		e.preventDefault();
 
-		const response = await fetch(`${process.env.REACT_APP_API_URL}/register`, {
-			method: "POST",
-			headers: {
-				"Content-type": "application/json",
-			},
-			body: JSON.stringify({
-				username,
-				email,
-				password,
-			}),
-		});
+
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/register`, {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({
+        username,
+        email,
+        password,
+      }),
+    });
 
 		const data = await response.json();
 
@@ -36,15 +37,16 @@ const Register = () => {
 		}
 	};
 
-	useEffect(() => {
-		fetch(`${process.env.REACT_APP_API_URL}/isUserAuth`, {
-			headers: {
-				"x-access-token": localStorage.getItem("token"),
-			},
-		})
-			.then((res) => res.json())
-			.then((data) => (data.isLoggedIn ? navigate("/dashboard") : null));
-	});
+
+  useEffect(() => {
+    fetch(`${process.env.REACT_APP_API_URL}/isUserAuth`, {
+      headers: {
+        "x-access-token": localStorage.getItem("token"),
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => (data.isLoggedIn ? navigate("/dashboard") : null));
+  });
 
 	return (
 		<div className="register-wrapper">

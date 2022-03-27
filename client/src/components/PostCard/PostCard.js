@@ -16,33 +16,34 @@ const PostCard = ({ post, refreshPosts }) => {
 
 	const token = localStorage.getItem("token");
 
-	const cancelVote = async (e) => {
-		e.preventDefault();
-		const postID = post._id;
-		const data = {
-			voteType: "",
-		};
-		const payload = {
-			method: "PATCH",
-			headers: {
-				Accept: "application/json",
-				"Content-Type": "application/json",
-				"x-access-token": token,
-			},
-			body: JSON.stringify(data),
-		};
-		try {
-			const res = await fetch(
-				`${process.env.REACT_APP_API_URL}/posts/${postID}/vote`,
-				payload
-			);
-			if (res.ok) {
-				refreshPosts();
-			}
-		} catch (error) {
-			console.log(error);
-		}
-	};
+
+  const cancelVote = async (e) => {
+    e.preventDefault();
+    const postID = post._id;
+    const data = {
+      voteType: "",
+    };
+    const payload = {
+      method: "PATCH",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        "x-access-token": token,
+      },
+      body: JSON.stringify(data),
+    };
+    try {
+      const res = await fetch(
+        `${process.env.REACT_APP_API_URL}/posts/${postID}/vote`,
+        payload
+      );
+      if (res.ok) {
+        refreshPosts();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
 	const upvote = async (e) => {
 		if (famed) {
@@ -50,65 +51,65 @@ const PostCard = ({ post, refreshPosts }) => {
 			return;
 		}
 
-		e.preventDefault();
-		const postID = post._id;
-		const data = {
-			voteType: "fame",
-		};
-		const payload = {
-			method: "PATCH",
-			headers: {
-				Accept: "application/json",
-				"Content-Type": "application/json",
-				"x-access-token": token,
-			},
-			body: JSON.stringify(data),
-		};
-		try {
-			const res = await fetch(
-				`${process.env.REACT_APP_API_URL}/posts/${postID}/vote`,
-				payload
-			);
-			if (res.ok) {
-				refreshPosts();
-			}
-		} catch (error) {
-			console.log(error);
-		}
-	};
+
+    e.preventDefault();
+    const postID = post._id;
+    const data = {
+      voteType: "fame",
+    };
+    const payload = {
+      method: "PATCH",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        "x-access-token": token,
+      },
+      body: JSON.stringify(data),
+    };
+    try {
+      const res = await fetch(
+        `${process.env.REACT_APP_API_URL}/posts/${postID}/vote`,
+        payload
+      );
+      if (res.ok) {
+        refreshPosts();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
 	const downvote = async (e) => {
 		if (lamed) {
 			cancelVote(e);
 			return;
 		}
-
-		e.preventDefault();
-		const postID = post._id;
-		const data = {
-			voteType: "lame",
-		};
-		const payload = {
-			method: "PATCH",
-			headers: {
-				Accept: "application/json",
-				"Content-Type": "application/json",
-				"x-access-token": token,
-			},
-			body: JSON.stringify(data),
-		};
-		try {
-			const res = await fetch(
-				`${process.env.REACT_APP_API_URL}/posts/${postID}/vote`,
-				payload
-			);
-			if (res.ok) {
-				refreshPosts();
-			}
-		} catch (error) {
-			console.log(error);
-		}
-	};
+    e.preventDefault();
+    const postID = post._id;
+    const data = {
+      voteType: "lame",
+    };
+    const payload = {
+      method: "PATCH",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        "x-access-token": token,
+      },
+      body: JSON.stringify(data),
+    };
+    try {
+      const res = await fetch(
+        `${process.env.REACT_APP_API_URL}/posts/${postID}/vote`,
+        payload
+      );
+      if (res.ok) {
+        refreshPosts();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
 	const UpvoteIcon = (
 		<TriangleUpIcon w={size} h={size} _hover={{ color: upvoteColor }} />

@@ -21,23 +21,24 @@ const PostForm = ({ refreshPosts, setForm }) => {
 			tag: tag,
 		};
 
-		try {
-			await fetch(`${process.env.REACT_APP_API_URL}/posts`, {
-				method: "POST",
-				headers: {
-					Accept: "application/json",
-					"Content-Type": "application/json",
-					"x-access-token": localStorage.getItem("token"),
-				},
-				body: JSON.stringify(newPost),
-			});
-			resetForm();
-			refreshPosts();
-			setForm(false);
-		} catch (err) {
-			console.log(err);
-		}
-	};
+
+    try {
+      await fetch(`${process.env.REACT_APP_API_URL}/posts`, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          "x-access-token": localStorage.getItem("token"),
+        },
+        body: JSON.stringify(newPost),
+      });
+      resetForm();
+      refreshPosts();
+      setForm(false);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
 	return (
 		<div className="form-container">

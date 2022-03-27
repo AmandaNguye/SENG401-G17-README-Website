@@ -105,3 +105,5 @@ dist
 
 .env
 client/node_modules/
+
+!client/.env
