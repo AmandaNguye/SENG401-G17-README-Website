@@ -121,3 +121,19 @@
 	list-style: none;
 	padding: 0.5em;
 }
+
+.page__comments__loadmore {
+	padding: 1em;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	transition: 200ms ease-in-out;
+	width: fit-content;
+	margin: auto;
+}
+
+.page__comments__loadmore:hover {
+	cursor: pointer;
+	transform: translateY(0.2em);
+	color: #b2a5ff;
+}

@@ -40,7 +40,7 @@ const PostPage = () => {
 
 		try {
 			const res = await fetch(
-				`http://localhost:5005/posts/${id}/comments/`,
+				`http://localhost:5005/posts/${id}/comments?limit=999999`,
 				payload
 			);
 			const comments = await res.json();
@@ -76,7 +76,7 @@ const PostPage = () => {
 		.slice(0, numComments);
 
 	const loadMoreComments = () => {
-		setComments((prevNum) => prevNum + 5);
+		setNumComments((prevNum) => prevNum + 5);
 	};
 
 	const cancelVote = async (e) => {
@@ -271,8 +271,11 @@ const PostPage = () => {
 					</div>
 				</form>
 				<ul className="page__comments__commentlist">{CommentObjects}</ul>
-				{comments.length > numComments ?? (
-					<div className="page__comments__loadmore"></div>
+				{comments.length > numComments && (
+					<div className="page__comments__loadmore" onClick={loadMoreComments}>
+						<h3>LOAD MORE</h3>
+						<TriangleDownIcon />
+					</div>
 				)}
 			</section>
 		</div>
