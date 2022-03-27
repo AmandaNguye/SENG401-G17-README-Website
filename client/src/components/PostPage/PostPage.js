@@ -71,9 +71,13 @@ const PostPage = () => {
 
 	const { content, creator, fame_count, famed, lamed, tag, title } = post;
 
-	const CommentObjects = comments.map((e) => (
-		<Comment comment={e} refreshComments={loadComment}></Comment>
-	));
+	const CommentObjects = comments
+		.map((e) => <Comment comment={e} refreshComments={loadComment}></Comment>)
+		.slice(0, numComments);
+
+	const loadMoreComments = () => {
+		setComments((prevNum) => prevNum + 5);
+	};
 
 	const cancelVote = async (e) => {
 		e.preventDefault();
@@ -267,6 +271,9 @@ const PostPage = () => {
 					</div>
 				</form>
 				<ul className="page__comments__commentlist">{CommentObjects}</ul>
+				{comments.length > numComments ?? (
+					<div className="page__comments__loadmore"></div>
+				)}
 			</section>
 		</div>
 	);
