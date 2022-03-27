@@ -5,7 +5,6 @@ const commentSchema = mongoose.Schema(
     content: {
       type: String,
       required: true,
-      minLength: 5,
     },
     fame_count: {
       type: Number,

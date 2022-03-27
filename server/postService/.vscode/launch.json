@@ -1,0 +1,43 @@
+{
+    "configurations": [
+        {
+            "name": "Cloud Run: Run/Debug Locally",
+            "type": "cloudcode.cloudrun",
+            "request": "launch",
+            "build": {
+                "docker": {
+                    "path": "Dockerfile"
+                }
+            },
+            "image": "post-service",
+            "service": {
+                "name": "post-service",
+                "containerPort": 5001,
+                "env": [
+                    {
+                        "name": "PORT",
+                        "value": "5001"
+                    },
+                    {
+                        "name": "USER",
+                        "value": "datlam"
+                    },
+                    {
+                        "name": "PW",
+                        "value": "Fole2celdmfvshaK"
+                    }
+                ],
+                "resources": {
+                    "limits": {
+                        "cpu": 1,
+                        "memory": "256Mi"
+                    }
+                }
+            },
+            "target": {
+                "minikube": {}
+            },
+            "watch": true
+        }
+    ]
+}

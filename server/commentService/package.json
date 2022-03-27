@@ -1,11 +1,11 @@
 {
-  "name": "postservice",
+  "name": "comments-service",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "",

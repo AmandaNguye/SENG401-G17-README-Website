@@ -17,8 +17,10 @@ app.use("/", Routes);
 
 const PORT = process.env.PORT || 5000;
 
+const CONNECTION_URL = `mongodb+srv://${process.env.USER}:${process.env.PW}@cluster0.mw5kc.mongodb.net/seng401?retryWrites=true&w=majority`
+
 mongoose
-  .connect(process.env.CONNECTION_URL, {
+  .connect(CONNECTION_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })

@@ -1,11 +1,11 @@
 {
   "name": "postservice",
   "version": "1.0.0",
-  "description": "",
+  "description": "Post service for seng401 project",
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "",
