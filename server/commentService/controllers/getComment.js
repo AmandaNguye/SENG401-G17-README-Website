@@ -36,7 +36,8 @@ export const getComments = async (req, res) => {
 			creator: comments[i].creator,
 			famed: comments[i].famer.includes(currentUser),
 			lamed: comments[i].lamer.includes(currentUser),
-
+			_id: comments[i]._id,
+			post: comments[i].post
 		});
 	}
 	res.json(result);

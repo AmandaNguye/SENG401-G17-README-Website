@@ -9,7 +9,7 @@ export const verifyPost = async (req, res, next) => {
     try {
         if (!client) client = await auth.getIdTokenClient(postURL);
         const header = await client.getRequestHeaders();
-        const post = await got.get(postURL + "/" + req.params.p_id, {
+        const post = await got.get(postURL + "/posts/" + req.params.p_id, {
             headers: {
                 "Authorization": header["Authorization"]
             }
