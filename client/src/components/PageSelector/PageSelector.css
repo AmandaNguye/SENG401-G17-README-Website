@@ -1,0 +1,18 @@
+.leftBtn,
+.rightBtn {
+  background: none;
+  border: none;
+  box-shadow: none;
+  cursor: pointer;
+  text-decoration: underline;
+  color: white;
+  font-size: 14px;
+}
+
+.leftBtn {
+  float: left;
+}
+
+.rightBtn {
+  float: right;
+}
