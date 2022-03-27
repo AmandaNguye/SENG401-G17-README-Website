@@ -1,6 +1,7 @@
 import express from "express";
 import got from "got";
 import { verifyUser } from "../controller/verifyUser.js";
+import { deleteCommentsByPost } from "../controller/deleteCommentsbyPost.js";
 import { GoogleAuth } from "google-auth-library";
 
 const auth = new GoogleAuth();
@@ -113,11 +114,12 @@ router.delete("/:id", verifyUser, async (req, res, next) => {
                 "Authorization": header["Authorization"]
             },
         }).json();
+
         res.send(response);
     } catch (err) {
         next(err);
     }
-});
+}, deleteCommentsByPost);
 
 router.patch("/:id/vote", verifyUser, async (req, res, next) => {
 

@@ -137,7 +137,8 @@ export const updateComment = async (req, res) => {
         await comment.save();
         res.status(200).send({ data: comment });
     } catch {
-        res.status(404).json({ error: "Comment doesn't exist!" });
+        console.log(e);
+        res.status(404).json({ error: e });
     }
 
 }

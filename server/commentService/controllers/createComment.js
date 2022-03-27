@@ -22,6 +22,7 @@ export const createComment = async (req, res) => {
         var result = await post.save();
         res.json({ result: result });
     } catch (e) {
+        console.log(e);
         res.status(406).json({ message: e });
     }
 }

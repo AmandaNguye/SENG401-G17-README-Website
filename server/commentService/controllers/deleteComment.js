@@ -20,7 +20,30 @@ export const deleteComment = async (req, res) => {
 			res.status(400).send();
 		}
 
-	} catch {
-		res.status(404).json({ error: "Post doesn't exist!" });
+	} catch (e) {
+		res.status(404).json({ error: e });
+	}
+}
+
+/**
+ * Delete all comments of a post
+ * @param {*} req
+ * @param {*} res 
+ */
+export const deleteCommentsByPost = async (req, res) => {
+	try {
+		const result = await Comment.deleteMany({
+			post: req.params.p_id,
+		});
+		if (result.deletedCount > 0) {
+			res.status(200).send();
+		}
+		else {
+			res.status(400).send();
+		}
+
+	} catch (e) {
+		console.log(e);
+		res.status(404).json({ error: e });
 	}
 }

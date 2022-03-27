@@ -113,25 +113,4 @@ router.patch("/:p_id/comments/:c_id/vote", verifyUser, async (req, res, next) =>
     }
 });
 
-router.patch("/:p_id/comments/:c_id", verifyUser, async (req, res, next) => {
-    const url = commentURL + "/posts/" + req.params.p_id + "/comments";
-    try {
-        if (!client) client = await auth.getIdTokenClient(commentURL);
-        const header = await client.getRequestHeaders();
-        const response = await got.patch(url + "/" + req.params.c_id, {
-            headers: {
-                "x-access-token": req.headers["x-access-token"],
-                "Authorization": header["Authorization"]
-            },
-            json: {
-                content: req.body.content
-            },
-        }).json();
-        res.send(response);
-    } catch (err) {
-        next(err);
-    }
-});
-
-
 export default router;

@@ -21,26 +21,30 @@ export const getComments = async (req, res) => {
 		page: parseInt(page, 10),
 		limit: parseInt(limit, 10)
 	}
+	try {
+		comments = await Comment.find({
+			post: postID
+		}).sort({ _id: -1 })
+			.limit(pageOptions.limit)
+			.skip(pageOptions.limit * pageOptions.page);
 
-	comments = await Comment.find({
-		post: postID
-	}).sort({ _id: -1 })
-		.limit(pageOptions.limit)
-		.skip(pageOptions.limit * pageOptions.page);
-
-	var result = [];
-	for (let i = 0; i < comments.length; i++) {
-		result.push({
-			content: comments[i].content,
-			fame_count: comments[i].fame_count,
-			creator: comments[i].creator,
-			famed: comments[i].famer.includes(currentUser),
-			lamed: comments[i].lamer.includes(currentUser),
-			_id: comments[i]._id,
-			post: comments[i].post
-		});
+		var result = [];
+		for (let i = 0; i < comments.length; i++) {
+			result.push({
+				content: comments[i].content,
+				fame_count: comments[i].fame_count,
+				creator: comments[i].creator,
+				famed: comments[i].famer.includes(currentUser),
+				lamed: comments[i].lamer.includes(currentUser),
+				_id: comments[i]._id,
+				post: comments[i].post
+			});
+		}
+		res.json(result);
+	} catch (e) {
+		console.log(e);
+		res.status(404).json({ error: e });
 	}
-	res.json(result);
 }
 
 /**
@@ -61,7 +65,8 @@ export const getCommentByID = async (req, res) => {
 			_id: comment._id,
 			post: comment.post,
 		});
-	} catch {
-		res.status(404).json({ error: "Comment doesn't exist!" });
+	} catch (e) {
+		console.log(e);
+		res.status(404).json({ error: e });
 	}
 }
