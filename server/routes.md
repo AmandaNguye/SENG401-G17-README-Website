@@ -283,8 +283,8 @@ Require:
 Return:
 - Result of the operation
 
-## DELETE https://api-gqqz6zzd4a-uc.a.run.app/posts/:id
-Delete comment with _id = ":id"
+## DELETE https://api-gqqz6zzd4a-uc.a.run.app/posts/:p_id/comments/:c_id
+Delete comment with _id = ":c_id"
 
 Require:
 - params:

@@ -4,15 +4,16 @@ import { useNavigate, Link } from "react-router-dom";
 import "./Register.css";
 
 const Register = () => {
-  const navigate = useNavigate();
+	const navigate = useNavigate();
 
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [taken, setTaken] = useState(false);
+	const [username, setUsername] = useState("");
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
+	const [taken, setTaken] = useState(false);
 
-  const registerUser = async (e) => {
-    e.preventDefault();
+	const registerUser = async (e) => {
+		e.preventDefault();
+
 
     const response = await fetch(`${process.env.REACT_APP_API_URL}/register`, {
       method: "POST",
@@ -26,15 +27,16 @@ const Register = () => {
       }),
     });
 
-    const data = await response.json();
+		const data = await response.json();
 
-    if (data.message === "Success") {
-      setTaken(false);
-      navigate("/login");
-    } else if (data.message === "Username or email has already been taken") {
-      setTaken(true);
-    }
-  };
+		if (data.message === "Success") {
+			setTaken(false);
+			navigate("/login");
+		} else if (data.message === "Username or email has already been taken") {
+			setTaken(true);
+		}
+	};
+
 
   useEffect(() => {
     fetch(`${process.env.REACT_APP_API_URL}/isUserAuth`, {
@@ -46,42 +48,42 @@ const Register = () => {
       .then((data) => (data.isLoggedIn ? navigate("/dashboard") : null));
   });
 
-  return (
-    <div className="register-wrapper">
-      <h1>Register</h1>
-      <form onSubmit={registerUser}>
-        <p>Username</p>
-        <input
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          type="text"
-        />
-        <p>Email</p>
-        <input
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          type="email"
-        />
-        <p>Password</p>
-        <input
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          type="password"
-        />
-        <br />
-        <input className="button" type="submit" value="Register" />
-      </form>
-      {taken && (
-        <p className="taken">Username or email has already been taken</p>
-      )}
-      <div className="login">
-        <p>Already have an account?</p>
-        <Link className="loginLink" to="/login">
-          Log in
-        </Link>
-      </div>
-    </div>
-  );
+	return (
+		<div className="register-wrapper">
+			<h1>Register</h1>
+			<form onSubmit={registerUser}>
+				<p>Username</p>
+				<input
+					value={username}
+					onChange={(e) => setUsername(e.target.value)}
+					type="text"
+				/>
+				<p>Email</p>
+				<input
+					value={email}
+					onChange={(e) => setEmail(e.target.value)}
+					type="email"
+				/>
+				<p>Password</p>
+				<input
+					value={password}
+					onChange={(e) => setPassword(e.target.value)}
+					type="password"
+				/>
+				<br />
+				<input className="button" type="submit" value="Register" />
+			</form>
+			{taken && (
+				<p className="taken">Username or email has already been taken</p>
+			)}
+			<div className="login">
+				<p>Already have an account?</p>
+				<Link className="loginLink" to="/login">
+					Log in
+				</Link>
+			</div>
+		</div>
+	);
 };
 
 export default Register;
