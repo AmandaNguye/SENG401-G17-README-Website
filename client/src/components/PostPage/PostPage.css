@@ -1,139 +1,141 @@
 .page {
-	max-width: 70vw;
-	margin: auto;
-	color: black;
-	display: grid;
-	gap: 1em;
-	color: #fff;
+  max-width: 70vw;
+  margin: auto;
+  color: black;
+  display: grid;
+  gap: 1em;
+  color: #fff;
 }
 
 .page__content {
-	background-color: #4b4b4f;
-	display: grid;
-	grid-template-columns: 8ch auto;
-	grid-template-rows: 5ch 1fr 5ch;
-	box-shadow: 0 0 0.5em #000;
+  background-color: #4b4b4f;
+  display: grid;
+  grid-template-columns: 8ch auto;
+  grid-template-rows: 5ch 1fr 5ch;
+  box-shadow: 0 0 0.5em #000;
 }
 
 .page__content__title {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	grid-column: 2 / 3;
-	grid-row: 1 / 2;
-	background-color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+  background-color: #333;
+  height: 100%;
+  margin-top: 0;
 }
 
 .page__content__body {
-	align-self: flex-start;
-	justify-self: flex-start;
-	min-height: 10em;
-	padding: 2em;
-	grid-column: 2 / 3;
-	grid-row: 2 / 2;
+  align-self: flex-start;
+  justify-self: flex-start;
+  min-height: 10em;
+  padding: 2em;
+  grid-column: 2 / 3;
+  grid-row: 2 / 2;
 }
 
 .page__content__famelame {
-	background-color: #262629;
-	grid-row: span 3;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
+  background-color: #262629;
+  grid-row: span 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .famed {
-	background-color: #b2a5ff;
+  background-color: #b2a5ff;
 }
 
 .lamed {
-	background-color: #ffd25e;
+  background-color: #ffd25e;
 }
 .page__content__famelame__famecount {
-	padding: 0.5em;
+  padding: 0.5em;
 }
 
 .page__content__famelame__lamecount {
-	padding: 0.5em;
+  padding: 0.5em;
 }
 
 .page__metadata {
-	font-weight: bold;
-	color: #4b4b4f;
-	display: flex;
-	flex-wrap: wrap;
-	align-items: center;
-	justify-content: space-around;
-	padding: 0.25em;
+  font-weight: bold;
+  color: #4b4b4f;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0.25em;
 }
 
 .page__comments {
-	background-color: #4b4b4f;
-	box-shadow: 0 0 0.5em #000;
+  background-color: #4b4b4f;
+  box-shadow: 0 0 0.5em #000;
 }
 
 .page__comments__top {
-	background-color: #262629;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	padding: 2em;
+  background-color: #262629;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2em;
 }
 
 .page__comments__top__input {
-	margin-top: 2em;
-	resize: vertical;
-	width: 80%;
-	max-height: 50vh;
-	min-height: 10vh;
-	font-size: 1.5em;
-	padding: 1em 1em;
+  margin-top: 2em;
+  resize: vertical;
+  width: 80%;
+  max-height: 50vh;
+  min-height: 10vh;
+  font-size: 1.5em;
+  padding: 1em 1em;
 }
 
 .page__comments__top__input::placeholder {
-	text-align: center;
+  text-align: center;
 }
 
 .page__comments__top__input__submit {
-	margin-left: auto;
-	margin-right: 10%;
-	padding: 0.5em;
-	font-size: 0.8em;
+  margin-left: auto;
+  margin-right: 10%;
+  padding: 0.5em;
+  font-size: 0.8em;
 }
 
 .page__comments__top__input__submit input {
-	font-family: Arial, Helvetica, sans-serif;
-	font-weight: bold;
-	padding: 0.2em;
-	border-radius: 0.1em;
-	border: none;
-	margin-left: 1ch;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  padding: 0.2em;
+  border-radius: 0.1em;
+  border: none;
+  margin-left: 1ch;
 }
 
 .page__comments__top__input__submit input:hover {
-	background-color: #b2a5ff;
+  background-color: #b2a5ff;
 }
 
 .page__comments__commentlist {
-	margin: 1em 0;
+  margin: 1em 0;
 }
 .page__comments__commentlist > * {
-	list-style: none;
-	padding: 0.5em;
+  list-style: none;
+  padding: 0.5em;
 }
 
 .page__comments__loadmore {
-	padding: 1em;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	transition: 200ms ease-in-out;
-	width: fit-content;
-	margin: auto;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: 200ms ease-in-out;
+  width: fit-content;
+  margin: auto;
 }
 
 .page__comments__loadmore:hover {
-	cursor: pointer;
-	transform: translateY(0.4em);
-	color: #b2a5ff;
+  cursor: pointer;
+  transform: translateY(0.4em);
+  color: #b2a5ff;
 }
