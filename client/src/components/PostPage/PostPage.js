@@ -55,7 +55,7 @@ const PostPage = () => {
 
 	const loadUsername = async () => {
 		try {
-			const res = await fetch("${process.env.REACT_APP_API_URL}/isUserAuth", {
+			const res = await fetch(`${process.env.REACT_APP_API_URL}/isUserAuth`, {
 				headers: {
 					"x-access-token": localStorage.getItem("token"),
 				},

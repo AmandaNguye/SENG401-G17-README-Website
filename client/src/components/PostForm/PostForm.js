@@ -22,7 +22,7 @@ const PostForm = ({ refreshPosts, setForm }) => {
 		};
 
 		try {
-			await fetch("${process.env.REACT_APP_API_URL}/posts", {
+			await fetch(`${process.env.REACT_APP_API_URL}/posts`, {
 				method: "POST",
 				headers: {
 					Accept: "application/json",
