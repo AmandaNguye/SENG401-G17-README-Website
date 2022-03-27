@@ -1,12 +1,7 @@
 .comment-card {
-	width: 95%;
-	margin: auto;
 	display: flex;
-	flex-direction: row;
-	align-items: flex-start;
+	margin: 0 1em;
 	background: #363638;
-	-webkit-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.16);
-	-moz-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.16);
 	box-shadow: 0 0 0.5em #000;
 	border-radius: 5px;
 	padding-top: 10px;
@@ -19,7 +14,7 @@
 	display: flex;
 	flex-direction: column;
 	flex-basis: 10%;
-	align-items: center;
+	text-align: center;
 	margin-top: 10px;
 	/* margin-right: 10px; */
 	/* margin-left: 10px; */
@@ -32,17 +27,16 @@
 }
 
 .comment-content {
-	display: block;
-	max-width: 80%;
 	margin-top: 10px;
 	margin-left: 5px;
 	margin-right: 20px;
+	width: 80%;
 }
 
 .comment-text {
-	max-height: 200px;
-	overflow: hidden;
-	/* overflow-y: ; */
+	max-width: 60vw;
+	word-wrap: break-word;
+	height: 100%;
 }
 
 .comment-text span {

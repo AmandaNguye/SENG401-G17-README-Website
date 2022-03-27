@@ -259,10 +259,10 @@ const PostPage = () => {
 			</section>
 			<section className="page__comments">
 				<form className="page__comments__top" onSubmit={handleSubmit}>
-					<h3 className={"page__comments__top__title"}>C O M M E N T S</h3>
+					<h3 className={"page__comments__top__title"}>COMMENTS</h3>
 					<textarea
 						type="text"
-						maxLength={200}
+						maxLength={1000}
 						className="page__comments__top__input"
 						placeholder="Enter comment here"
 						value={text}
