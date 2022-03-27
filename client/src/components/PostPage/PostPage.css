@@ -7,7 +7,7 @@
 	color: #fff;
 }
 
-.page--content {
+.page__content {
 	background-color: #4b4b4f;
 	display: grid;
 	grid-template-columns: 8ch auto;
@@ -15,7 +15,7 @@
 	box-shadow: 0 0 0.5em #000;
 }
 
-.page--content--title {
+.page__content__title {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -24,7 +24,7 @@
 	background-color: #000;
 }
 
-.page--content--body {
+.page__content__body {
 	align-self: flex-start;
 	justify-self: flex-start;
 	min-height: 10em;
@@ -33,7 +33,7 @@
 	grid-row: 2 / 2;
 }
 
-.page--content--famelame {
+.page__content__famelame {
 	background-color: #262629;
 	grid-row: span 3;
 	display: flex;
@@ -49,15 +49,15 @@
 .lamed {
 	background-color: #ffd25e;
 }
-.page--content--famelame--famecount {
+.page__content__famelame__famecount {
 	padding: 0.5em;
 }
 
-.page--content--famelame--lamecount {
+.page__content__famelame__lamecount {
 	padding: 0.5em;
 }
 
-.page--metadata {
+.page__metadata {
 	font-weight: bold;
 	color: #4b4b4f;
 	display: flex;
@@ -67,12 +67,12 @@
 	padding: 0.25em;
 }
 
-.page--comments {
+.page__comments {
 	background-color: #4b4b4f;
 	box-shadow: 0 0 0.5em #000;
 }
 
-.page--comments--top {
+.page__comments__top {
 	background-color: #000000;
 	display: flex;
 	flex-direction: column;
@@ -80,7 +80,7 @@
 	padding: 2em;
 }
 
-.page--comments--top--input {
+.page__comments__top__input {
 	margin-top: 2em;
 	max-width: 90%;
 	min-width: 90%;
@@ -90,18 +90,18 @@
 	padding: 1em 1em;
 }
 
-.page--comments--top--input::placeholder {
+.page__comments__top__input::placeholder {
 	text-align: center;
 }
 
-.page--comments--top--input--submit {
+.page__comments__top__input__submit {
 	margin-left: auto;
 	margin-right: 10%;
 	padding: 0.5em;
 	font-size: 0.8em;
 }
 
-.page--comments--top--input--submit input {
+.page__comments__top__input__submit input {
 	font-family: Arial, Helvetica, sans-serif;
 	font-weight: bold;
 	padding: 0.2em;
@@ -110,14 +110,14 @@
 	margin-left: 1ch;
 }
 
-.page--comments--top--input--submit input:hover {
+.page__comments__top__input__submit input:hover {
 	background-color: #b2a5ff;
 }
 
-.page--comments--commentlist {
+.page__comments__commentlist {
 	margin: 1em 0;
 }
-.page--comments--commentlist > * {
+.page__comments__commentlist > * {
 	list-style: none;
 	padding: 0.5em;
 }

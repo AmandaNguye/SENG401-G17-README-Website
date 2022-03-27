@@ -9,6 +9,7 @@ const PostPage = () => {
 	let user;
 	const [post, setPost] = useState([]);
 	const [comments, setComments] = useState([]);
+	const [numComments, setNumComments] = useState(5);
 	const [text, setText] = useState("");
 	const { id } = useParams();
 
@@ -207,10 +208,10 @@ const PostPage = () => {
 
 	return (
 		<div className="page">
-			<section className="page--content">
-				<h3 className="page--content--title">{title}</h3>
-				<p className="page--content--body">{content}</p>
-				<div className="page--content--famelame">
+			<section className="page__content">
+				<h3 className="page__content__title">{title}</h3>
+				<p className="page__content__body">{content}</p>
+				<div className="page__content__famelame">
 					<IconButton
 						icon={UpvoteIcon}
 						backgroundColor="transparent"
@@ -221,7 +222,7 @@ const PostPage = () => {
 						onClick={upvote}
 					></IconButton>
 					<div
-						className="page--content--famelame--famecount"
+						className="page__content__famelame__famecount"
 						style={{ color: fame_count >= 0 ? "#b2a5ff" : "#ffd25e" }}
 					>
 						{fame_count}
@@ -238,34 +239,34 @@ const PostPage = () => {
 				</div>
 				<div
 					className={
-						fame_count >= 0 ? "page--metadata famed" : "page--metadata lamed"
+						fame_count >= 0 ? "page__metadata famed" : "page__metadata lamed"
 					}
 				>
-					<div className="page--metadata--creator">
+					<div className="page__metadata__creator">
 						&lt;author&gt; {creator} &lt;/author&gt;
 					</div>
-					<div className="page--metadata--tag">
+					<div className="page__metadata__tag">
 						&lt;tag&gt; {tag} &lt;/tag&gt;
 					</div>
 				</div>
 			</section>
-			<section className="page--comments">
-				<form className="page--comments--top" onSubmit={handleSubmit}>
-					<h3 className={"page--comments--top--title"}>C O M M E N T S</h3>
+			<section className="page__comments">
+				<form className="page__comments__top" onSubmit={handleSubmit}>
+					<h3 className={"page__comments__top__title"}>C O M M E N T S</h3>
 					<textarea
 						type="text"
 						maxLength={200}
-						className="page--comments--top--input"
+						className="page__comments__top__input"
 						placeholder="Enter comment here"
 						value={text}
 						onChange={(e) => setText(e.target.value)}
 					/>
-					<div className="page--comments--top--input--submit">
+					<div className="page__comments__top__input__submit">
 						char count: {text.length}
 						<input type="submit" />
 					</div>
 				</form>
-				<ul className="page--comments--commentlist">{CommentObjects}</ul>
+				<ul className="page__comments__commentlist">{CommentObjects}</ul>
 			</section>
 		</div>
 	);
