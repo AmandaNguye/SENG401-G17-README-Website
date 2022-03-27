@@ -17,7 +17,7 @@ const Dashboard = () => {
   const [posting, setPosting] = useState(false);
 
   useEffect(() => {
-    fetch("http://localhost:5005/isUserAuth", {
+    fetch(`${process.env.REACT_APP_API_URL}/isUserAuth`, {
       headers: {
         "x-access-token": localStorage.getItem("token"),
       },
@@ -60,7 +60,7 @@ const Dashboard = () => {
 
     try {
       const res = await fetch(
-        `http://localhost:5005/posts?page=${currPage}`,
+        `${process.env.REACT_APP_API_URL}/posts?page=${currPage}`,
         payload
       );
       const posts = await res.json();

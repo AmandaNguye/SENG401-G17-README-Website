@@ -9,7 +9,7 @@ export const loadPosts = async () => {
   };
 
   try {
-    const res = await fetch(`http://localhost:5005/posts`, payload);
+    const res = await fetch(`${process.env.REACT_APP_API_URL}/posts`, payload);
     const posts = await res.json();
     return posts;
     // console.log(posts);

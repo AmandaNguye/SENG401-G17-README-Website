@@ -14,7 +14,7 @@ const Register = () => {
   const registerUser = async (e) => {
     e.preventDefault();
 
-    const response = await fetch("http://localhost:5005/register", {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/register`, {
       method: "POST",
       headers: {
         "Content-type": "application/json",
@@ -37,7 +37,7 @@ const Register = () => {
   };
 
   useEffect(() => {
-    fetch("http://localhost:5005/isUserAuth", {
+    fetch(`${process.env.REACT_APP_API_URL}/isUserAuth`, {
       headers: {
         "x-access-token": localStorage.getItem("token"),
       },

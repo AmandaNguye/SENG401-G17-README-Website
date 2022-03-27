@@ -33,7 +33,7 @@ const PostCard = ({ post, refreshPosts }) => {
     };
     try {
       const res = await fetch(
-        `http://localhost:5005/posts/${postID}/vote`,
+        `${process.env.REACT_APP_API_URL}/posts/${postID}/vote`,
         payload
       );
       if (res.ok) {
@@ -66,7 +66,7 @@ const PostCard = ({ post, refreshPosts }) => {
     };
     try {
       const res = await fetch(
-        `http://localhost:5005/posts/${postID}/vote`,
+        `${process.env.REACT_APP_API_URL}/posts/${postID}/vote`,
         payload
       );
       if (res.ok) {
@@ -99,7 +99,7 @@ const PostCard = ({ post, refreshPosts }) => {
     };
     try {
       const res = await fetch(
-        `http://localhost:5005/posts/${postID}/vote`,
+        `${process.env.REACT_APP_API_URL}/posts/${postID}/vote`,
         payload
       );
       if (res.ok) {

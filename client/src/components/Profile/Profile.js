@@ -11,7 +11,7 @@ const Profile = () => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5005/isUserAuth", {
+    fetch(`${process.env.REACT_APP_API_URL}/isUserAuth`, {
       headers: {
         "x-access-token": localStorage.getItem("token"),
       },
@@ -47,7 +47,7 @@ const Profile = () => {
       try {
         console.log(username);
         const res = await fetch(
-          `http://localhost:5005/posts/user/${username}`,
+          `${process.env.REACT_APP_API_URL}/posts/user/${username}`,
           payload
         ); // Port 5001 for postService
         const posts = await res.json();
