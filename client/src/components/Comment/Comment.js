@@ -32,7 +32,7 @@ const CommentCard = ({ comment, refreshComments }) => {
 		};
 		try {
 			const res = await fetch(
-				`https://api-gqqz6zzd4a-uc.a.run.app/posts/${postID}/comments/${commentID}/vote`,
+				`${process.env.REACT_APP_API_URL}/posts/${postID}/comments/${commentID}/vote`,
 				payload
 			);
 			if (res.ok) {
@@ -66,7 +66,7 @@ const CommentCard = ({ comment, refreshComments }) => {
 		};
 		try {
 			const res = await fetch(
-				`https://api-gqqz6zzd4a-uc.a.run.app/posts/${postID}/comments/${commentID}/vote`,
+				`${process.env.REACT_APP_API_URL}/posts/${postID}/comments/${commentID}/vote`,
 				payload
 			);
 			if (res.ok) {
@@ -100,7 +100,7 @@ const CommentCard = ({ comment, refreshComments }) => {
 		};
 		try {
 			const res = await fetch(
-				`https://api-gqqz6zzd4a-uc.a.run.app/posts/${postID}/comments/${commentID}/vote`,
+				`${process.env.REACT_APP_API_URL}/posts/${postID}/comments/${commentID}/vote`,
 				payload
 			);
 			if (res.ok) {
