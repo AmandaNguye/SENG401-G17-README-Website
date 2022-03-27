@@ -9,7 +9,7 @@ const Landing = () => {
 
 	useEffect(() => {
 		const checkLoggedIn = () => {
-			fetch("https://api-gqqz6zzd4a-uc.a.run.app/isUserAuth", {
+			fetch("${process.env.REACT_APP_API_URL}/isUserAuth", {
 				headers: {
 					"x-access-token": localStorage.getItem("token"),
 				},

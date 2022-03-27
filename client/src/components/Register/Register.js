@@ -14,20 +14,17 @@ const Register = () => {
 	const registerUser = async (e) => {
 		e.preventDefault();
 
-		const response = await fetch(
-			"https://api-gqqz6zzd4a-uc.a.run.app/register",
-			{
-				method: "POST",
-				headers: {
-					"Content-type": "application/json",
-				},
-				body: JSON.stringify({
-					username,
-					email,
-					password,
-				}),
-			}
-		);
+		const response = await fetch("${process.env.REACT_APP_API_URL}/register", {
+			method: "POST",
+			headers: {
+				"Content-type": "application/json",
+			},
+			body: JSON.stringify({
+				username,
+				email,
+				password,
+			}),
+		});
 
 		const data = await response.json();
 
@@ -40,7 +37,7 @@ const Register = () => {
 	};
 
 	useEffect(() => {
-		fetch("https://api-gqqz6zzd4a-uc.a.run.app/isUserAuth", {
+		fetch("${process.env.REACT_APP_API_URL}/isUserAuth", {
 			headers: {
 				"x-access-token": localStorage.getItem("token"),
 			},
