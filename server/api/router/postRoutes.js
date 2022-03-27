@@ -7,7 +7,7 @@ import { verifyUser } from "../controller/verifyUser.js";
 dotenv.config();
 
 const router = express.Router();
-const postURL = process.env.POST_URL;
+const postURL = process.env.POST_URL + "/posts";
 
 router.get("/", async (req, res, next) => {
     try {
