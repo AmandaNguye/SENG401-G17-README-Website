@@ -82,7 +82,6 @@ const CommentCard = ({ comment, refreshComments }) => {
 			cancelVote(e);
 			return;
 		}
-		console.log(comment.post);
 		const postID = comment.post;
 		const commentID = comment._id;
 
