@@ -17,7 +17,7 @@
   margin-bottom: 30px;
 }
 
-.vote-box {
+.post-vote-box {
   display: flex;
   flex-direction: column;
   flex-basis: 10%;
@@ -32,7 +32,7 @@ p {
   color: white;
 }
 
-.vote-box p {
+.post-vote-box p {
   margin-top: 5px;
   margin-bottom: 5px;
 }
@@ -101,11 +101,11 @@ p {
     padding-left: 10px;
   }
 
-  .vote-box {
+  .post-vote-box {
     flex-direction: row;
   }
 
-  .vote-box p {
+  .post-vote-box p {
     margin-left: 10px;
     margin-right: 10px;
   }

@@ -6,6 +6,7 @@ const Profile = () => {
   const navigate = useNavigate();
 
   const [username, setUsername] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const [posts, setPosts] = useState([]);
 
@@ -18,12 +19,14 @@ const Profile = () => {
       .then((res) => res.json())
       .then((data) =>
         data.isLoggedIn ? setUsername(data.username) : navigate("/login")
-      );
+      )
+      .then(() => setIsLoggedIn(true));
   });
 
   const handleLogout = (e) => {
     e.preventDefault();
     localStorage.removeItem("token");
+    setIsLoggedIn(false);
     navigate("/login");
   };
 
@@ -61,17 +64,19 @@ const Profile = () => {
   }, [username]);
 
   return (
-    <div>
-      <button type="button" onClick={(e) => handleLogout(e)}>
-        Log Out
-      </button>
-      <button type="button" onClick={(e) => handleDashboard(e)}>
-        Dashboard
-      </button>
-      <h1>Welcome, {username} </h1>
-      <h2>Your Posts:</h2>
-      <PostList posts={posts} refreshPosts={loadPosts} />
-    </div>
+    isLoggedIn && (
+      <div>
+        <button type="button" onClick={(e) => handleLogout(e)}>
+          Log Out
+        </button>
+        <button type="button" onClick={(e) => handleDashboard(e)}>
+          Dashboard
+        </button>
+        <h1>Welcome, {username} </h1>
+        <h2>Your Posts:</h2>
+        <PostList posts={posts} refreshPosts={loadPosts} />
+      </div>
+    )
   );
 };
 
