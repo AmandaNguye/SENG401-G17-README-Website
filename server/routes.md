@@ -6,7 +6,7 @@ If any error happen, the gateway will return 500
 
 # Posts Routes
 
-## GET http://localhost:5005/posts
+## GET https://api-gqqz6zzd4a-uc.a.run.app/posts
 Get all posts or search for post using keywords
 
 Accept:
@@ -31,7 +31,7 @@ Return:
             _id: String (Post ID)
         }
 
-## GET http://localhost:5005/posts/user/:username
+## GET https://api-gqqz6zzd4a-uc.a.run.app/posts/user/:username
 Get all posts created by user with ":username"
 
 Require:
@@ -60,7 +60,7 @@ Return:
         }
 
 
-## GET http://localhost:5005/posts/:id
+## GET https://api-gqqz6zzd4a-uc.a.run.app/posts/:id
 Get post with _id = ":id"
 
 Require:
@@ -85,7 +85,7 @@ Return:
             _id: String (Post ID)
         }
 
-## POST http://localhost:5005/posts/
+## POST https://api-gqqz6zzd4a-uc.a.run.app/posts/
 Create a post
 
 Require:
@@ -102,7 +102,7 @@ Accept:
 Return:
 - Result of the operation
 
-## DELETE http://localhost:5005/posts/:id
+## DELETE https://api-gqqz6zzd4a-uc.a.run.app/posts/:id
 Delete post with _id = ":id"
 
 Require:
@@ -116,7 +116,7 @@ Return:
   - 204 for success
   - 500 for failure
 
-## PATCH http://localhost:5005/posts/:id/vote
+## PATCH https://api-gqqz6zzd4a-uc.a.run.app/posts/:id/vote
 Change the vote on post with _id = ":id"
 
 Require:
@@ -132,7 +132,7 @@ Return:
   - 200 for success
   - 500 for failure
 
-## PATCH http://localhost:5005/posts/:id
+## PATCH https://api-gqqz6zzd4a-uc.a.run.app/posts/:id
 Update post with _id = ":id"
 
 Require:
@@ -155,7 +155,7 @@ Return:
 
 # User routes
 
-## POST http://localhost:5005/login
+## POST https://api-gqqz6zzd4a-uc.a.run.app/login
 Log user in
 
 Require:
@@ -178,7 +178,7 @@ On Failure
         {
             message: "err" or "Invalid Username or Password"
         }
-## GET http://localhost:5005/isUserAuth
+## GET https://api-gqqz6zzd4a-uc.a.run.app/isUserAuth
 Check user auth status
 
 Require:
@@ -200,7 +200,7 @@ On Failure
             isLoggedIn: false
         }
 
-## POST http://localhost:5005/register
+## POST https://api-gqqz6zzd4a-uc.a.run.app/register
 Register a user
 
 Require:
@@ -223,7 +223,7 @@ On Failure
         }
 
 # Comment Route
-## GET http://localhost:5005/posts/:p_id/comments/
+## GET https://api-gqqz6zzd4a-uc.a.run.app/posts/:p_id/comments/
 Get all comments of a post
 
 Accept:
@@ -246,7 +246,7 @@ Return:
             lamed: Boolean (Has current user lamed),
         }
 
-## GET http://localhost:5005/posts/:p_id/comments/c_id
+## GET https://api-gqqz6zzd4a-uc.a.run.app/posts/:p_id/comments/c_id
 Get comment with _id = ":c_id"
 
 Require:
@@ -269,7 +269,7 @@ Return:
             lamed: Boolean (Has current user lamed),
         }
 
-## POST http://localhost:5005/posts/:p_id/comments
+## POST https://api-gqqz6zzd4a-uc.a.run.app/posts/:p_id/comments
 Create a comment
 
 Require:
@@ -283,7 +283,7 @@ Require:
 Return:
 - Result of the operation
 
-## DELETE http://localhost:5005/posts/:id
+## DELETE https://api-gqqz6zzd4a-uc.a.run.app/posts/:id
 Delete comment with _id = ":id"
 
 Require:
@@ -298,7 +298,7 @@ Return:
   - 204 for success
   - 500 for failure
 
-## PATCH http://localhost:5005/posts/:p_id/comments/:c_id/vote
+## PATCH https://api-gqqz6zzd4a-uc.a.run.app/posts/:p_id/comments/:c_id/vote
 Change the vote on post with _id = ":c_id"
 
 Require:
@@ -315,7 +315,7 @@ Return:
   - 200 for success
   - 500 for failure
 
-## PATCH http://localhost:5005/posts/:p_id/comments/:c_id
+## PATCH https://api-gqqz6zzd4a-uc.a.run.app/posts/:p_id/comments/:c_id
 Update comment with _id = ":c_id"
 
 Require:

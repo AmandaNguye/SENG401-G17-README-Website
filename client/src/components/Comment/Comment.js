@@ -51,7 +51,6 @@ const CommentCard = ({ comment, refreshComments }) => {
       cancelVote(e);
       return;
     }
-
     e.preventDefault();
     const data = {
       voteType: "fame",
@@ -77,6 +76,7 @@ const CommentCard = ({ comment, refreshComments }) => {
       console.log(error);
     }
   };
+
 
   const downvote = async (e) => {
     if (lamed) {

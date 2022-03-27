@@ -15,3 +15,7 @@ JWT_SECRET = (we will get our JWT hash key to make sure everyone has the same ke
 1. Run the each microservices by using `npm start` in the terminal inside the folder of each microservices. (Will make a script to start all servers at once soon)
 
 2. Run the client code by using `npm start` in the terminal inside the client folder.
+
+
+## Cloud Computing
+Cloud compatible codes are stored within `dat/cloud` branch

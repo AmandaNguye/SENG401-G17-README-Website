@@ -147,12 +147,11 @@ const PostPage = () => {
     }
   };
 
-  const downvote = async (e) => {
-    if (lamed) {
-      cancelVote(e);
-      return;
-    }
-
+	const downvote = async (e) => {
+		if (lamed) {
+			cancelVote(e);
+			return;
+		}
     e.preventDefault();
     const postID = id;
     const data = {
@@ -180,13 +179,14 @@ const PostPage = () => {
     }
   };
 
-  const UpvoteIcon = (
-    <TriangleUpIcon w={20} h={20} _hover={{ color: "#644aff" }} />
-  );
 
-  const DownvoteIcon = (
-    <TriangleDownIcon w={20} h={20} _hover={{ color: "#ffd25e" }} />
-  );
+	const UpvoteIcon = (
+		<TriangleUpIcon w={20} h={20} _hover={{ color: "#644aff" }} />
+	);
+
+	const DownvoteIcon = (
+		<TriangleDownIcon w={20} h={20} _hover={{ color: "#ffd25e" }} />
+	);
 
   const handleSubmit = async (e) => {
     //prevent default
@@ -287,6 +287,7 @@ const PostPage = () => {
       </section>
     </div>
   );
+
 };
 
 export default PostPage;
