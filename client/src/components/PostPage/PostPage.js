@@ -6,7 +6,6 @@ import Comment from "../Comment/Comment";
 import "./PostPage.css";
 
 const PostPage = () => {
-
 	let user;
 	const [post, setPost] = useState([]);
 	const [comments, setComments] = useState([]);
@@ -14,32 +13,30 @@ const PostPage = () => {
 	const [text, setText] = useState("");
 	const { id } = useParams();
 
+	const loadPost = async () => {
+		const payload = {
+			method: "GET",
+			headers: {
+				"x-access-token": localStorage.getItem("token"),
+			},
+		};
 
-  const loadPost = async () => {
-    const payload = {
-      method: "GET",
-      headers: {
-        "x-access-token": localStorage.getItem("token"),
-      },
-    };
+		try {
+			const res = await fetch(`http://localhost:5005/posts/${id}`, payload);
+			const posts = await res.json();
+			setPost(posts);
+		} catch (err) {
+			console.error(err);
+		}
+	};
 
-    try {
-      const res = await fetch(`http://localhost:5005/posts/${id}`, payload);
-      const posts = await res.json();
-      setPost(posts);
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
-  const loadComment = async () => {
-    const payload = {
-      method: "GET",
-      headers: {
-        "x-access-token": localStorage.getItem("token"),
-      },
-    };
-
+	const loadComment = async () => {
+		const payload = {
+			method: "GET",
+			headers: {
+				"x-access-token": localStorage.getItem("token"),
+			},
+		};
 
 		try {
 			const res = await fetch(
@@ -53,141 +50,139 @@ const PostPage = () => {
 		}
 	};
 
+	const loadUsername = async () => {
+		try {
+			const res = await fetch("http://localhost:5005/isUserAuth", {
+				headers: {
+					"x-access-token": localStorage.getItem("token"),
+				},
+			});
+			user = await res.json();
+		} catch (err) {
+			console.error(err);
+		}
+	};
 
-  const loadUsername = async () => {
-    try {
-      const res = await fetch("http://localhost:5005/isUserAuth", {
-        headers: {
-          "x-access-token": localStorage.getItem("token"),
-        },
-      });
-      user = await res.json();
-    } catch (err) {
-      console.error(err);
-    }
-  };
+	useEffect(() => {
+		loadPost();
+		loadComment();
+		loadUsername();
+	}, []);
 
-  useEffect(() => {
-    loadPost();
-    loadComment();
-    loadUsername();
-  }, []);
-
-  const { content, creator, fame_count, famed, lamed, tag, title } = post;
-
+	const { content, creator, fame_count, famed, lamed, tag, title } = post;
 
 	const CommentObjects = comments
+		.sort((a, b) => b.fame_count - a.fame_count)
+		.slice(0, numComments)
 		.map((e) => (
 			<Comment key={e._id} comment={e} refreshComments={loadComment}></Comment>
-		))
-		.slice(0, numComments);
+		));
 
 	const loadMoreComments = () => {
 		setNumComments((prevNum) => prevNum + 5);
 	};
 
+	const cancelVote = async (e) => {
+		e.preventDefault();
+		const postID = id;
+		const data = {
+			voteType: "",
+		};
+		const payload = {
+			method: "PATCH",
+			headers: {
+				Accept: "application/json",
+				"Content-Type": "application/json",
+				"x-access-token": localStorage.getItem("token"),
+			},
+			body: JSON.stringify(data),
+		};
+		try {
+			const res = await fetch(
+				`http://localhost:5005/posts/${postID}/vote`,
+				payload
+			);
+			if (res.ok) {
+				loadPost();
+			}
+		} catch (error) {
+			console.error(error);
+		}
+	};
 
-  const cancelVote = async (e) => {
-    e.preventDefault();
-    const postID = id;
-    const data = {
-      voteType: "",
-    };
-    const payload = {
-      method: "PATCH",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        "x-access-token": localStorage.getItem("token"),
-      },
-      body: JSON.stringify(data),
-    };
-    try {
-      const res = await fetch(
-        `http://localhost:5005/posts/${postID}/vote`,
-        payload
-      );
-      if (res.ok) {
-        loadPost();
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
+	const upvote = async (e) => {
+		if (famed) {
+			cancelVote(e);
+			return;
+		}
 
-  const upvote = async (e) => {
-    if (famed) {
-      cancelVote(e);
-      return;
-    }
+		e.preventDefault();
+		const postID = id;
+		const data = {
+			voteType: "fame",
+		};
+		const payload = {
+			method: "PATCH",
+			headers: {
+				Accept: "application/json",
+				"Content-Type": "application/json",
+				"x-access-token": localStorage.getItem("token"),
+			},
+			body: JSON.stringify(data),
+		};
+		try {
+			const res = await fetch(
+				`http://localhost:5005/posts/${postID}/vote`,
+				payload
+			);
+			if (res.ok) {
+				loadPost();
+			}
+		} catch (error) {
+			console.error(error);
+		}
+	};
 
-    e.preventDefault();
-    const postID = id;
-    const data = {
-      voteType: "fame",
-    };
-    const payload = {
-      method: "PATCH",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        "x-access-token": localStorage.getItem("token"),
-      },
-      body: JSON.stringify(data),
-    };
-    try {
-      const res = await fetch(
-        `http://localhost:5005/posts/${postID}/vote`,
-        payload
-      );
-      if (res.ok) {
-        loadPost();
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
+	const downvote = async (e) => {
+		if (lamed) {
+			cancelVote(e);
+			return;
+		}
 
-  const downvote = async (e) => {
-    if (lamed) {
-      cancelVote(e);
-      return;
-    }
+		e.preventDefault();
+		const postID = id;
+		const data = {
+			voteType: "lame",
+		};
+		const payload = {
+			method: "PATCH",
+			headers: {
+				Accept: "application/json",
+				"Content-Type": "application/json",
+				"x-access-token": localStorage.getItem("token"),
+			},
+			body: JSON.stringify(data),
+		};
+		try {
+			const res = await fetch(
+				`http://localhost:5005/posts/${postID}/vote`,
+				payload
+			);
+			if (res.ok) {
+				loadPost();
+			}
+		} catch (error) {
+			console.error(error);
+		}
+	};
 
-    e.preventDefault();
-    const postID = id;
-    const data = {
-      voteType: "lame",
-    };
-    const payload = {
-      method: "PATCH",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        "x-access-token": localStorage.getItem("token"),
-      },
-      body: JSON.stringify(data),
-    };
-    try {
-      const res = await fetch(
-        `http://localhost:5005/posts/${postID}/vote`,
-        payload
-      );
-      if (res.ok) {
-        loadPost();
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
+	const UpvoteIcon = (
+		<TriangleUpIcon w={20} h={20} _hover={{ color: "#644aff" }} />
+	);
 
-  const UpvoteIcon = (
-    <TriangleUpIcon w={20} h={20} _hover={{ color: "#644aff" }} />
-  );
-
-  const DownvoteIcon = (
-    <TriangleDownIcon w={20} h={20} _hover={{ color: "#ffd25e" }} />
-  );
+	const DownvoteIcon = (
+		<TriangleDownIcon w={20} h={20} _hover={{ color: "#ffd25e" }} />
+	);
 
 	const handleSubmit = async (e) => {
 		//prevent default
@@ -204,20 +199,19 @@ const PostPage = () => {
 			}),
 		};
 
-
-    try {
-      const res = await fetch(
-        `http://localhost:5005/posts/${id}/comments`,
-        payload
-      );
-      if (res.ok) {
-        loadComment();
-      }
-      setText("");
-    } catch (err) {
-      console.error(err);
-    }
-  };
+		try {
+			const res = await fetch(
+				`http://localhost:5005/posts/${id}/comments`,
+				payload
+			);
+			if (res.ok) {
+				loadComment();
+			}
+			setText("");
+		} catch (err) {
+			console.error(err);
+		}
+	};
 
 	return (
 		<div className="page">
@@ -289,7 +283,6 @@ const PostPage = () => {
 			</section>
 		</div>
 	);
-
 };
 
 export default PostPage;
