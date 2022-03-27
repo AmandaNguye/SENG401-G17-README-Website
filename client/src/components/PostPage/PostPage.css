@@ -134,6 +134,6 @@
 
 .page__comments__loadmore:hover {
 	cursor: pointer;
-	transform: translateY(0.2em);
+	transform: translateY(0.4em);
 	color: #b2a5ff;
 }
