@@ -21,7 +21,7 @@
 	align-items: center;
 	grid-column: 2 / 3;
 	grid-row: 1 / 2;
-	background-color: #000;
+	background-color: #333;
 }
 
 .page__content__body {
@@ -73,7 +73,7 @@
 }
 
 .page__comments__top {
-	background-color: #000000;
+	background-color: #262629;
 	display: flex;
 	flex-direction: column;
 	align-items: center;

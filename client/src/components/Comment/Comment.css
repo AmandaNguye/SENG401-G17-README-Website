@@ -43,6 +43,19 @@
 	color: #b2a5ff;
 }
 
+.comment-delete {
+	padding: 1em;
+	align-self: center;
+	opacity: 0.1;
+	transition: 200ms ease;
+}
+
+.comment-delete:hover {
+	opacity: 1;
+	color: #b2a5ff;
+	cursor: pointer;
+}
+
 .card-footer {
 	justify-content: left;
 }
