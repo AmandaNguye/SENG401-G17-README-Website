@@ -12,7 +12,7 @@
   padding-top: 10px;
   /* padding-left: 10px; */
   /* padding-right: 10px; */
-  padding-bottom: 20px;
+  padding-bottom: 0px;
   margin-top: 30px;
   margin-bottom: 30px;
 }
@@ -32,6 +32,11 @@ p {
   color: white;
 }
 
+.post-header {
+  font-size: 12px;
+  color: rgb(180, 180, 180);
+}
+
 .post-vote-box p {
   margin-top: 5px;
   margin-bottom: 5px;
@@ -40,7 +45,7 @@ p {
 .post-content {
   display: block;
   max-width: 80%;
-  margin-top: 10px;
+  /* margin-top: 10px; */
   margin-left: 5px;
   margin-right: 20px;
 }
@@ -57,16 +62,6 @@ p {
   color: white;
   cursor: pointer;
 }
-
-.card-footer {
-  justify-content: left;
-}
-
-/* .vote-box button {
-  height: 30px;
-  width: 70px;
-  border-radius: 15px;
-} */
 
 .fame {
   border: 2px solid #644aff;
@@ -92,6 +87,31 @@ p {
   box-shadow: inset 0px 80px 0px #ffd25e;
 }
 
+.card-footer {
+  margin-top: 20px;
+  margin-bottom: 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.card-footer button {
+  background-color: #363638;
+  width: fit-content;
+  margin-right: 25px;
+  height: 30px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  color: rgb(131, 131, 131);
+  text-align: left;
+}
+
+.user-options {
+  align-self: flex-end;
+}
+
 @media screen and (max-width: 700px) {
   .post-card {
     flex-direction: column-reverse;
@@ -99,6 +119,7 @@ p {
     margin-bottom: 10px;
     margin-top: 10px;
     padding-left: 10px;
+    padding-bottom: 8px;
   }
 
   .post-vote-box {

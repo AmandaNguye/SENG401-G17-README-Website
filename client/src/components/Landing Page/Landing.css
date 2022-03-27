@@ -1,49 +1,49 @@
-* {
+/* * {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-}
+} */
 
 .landing--container {
-	display: flex;
-	flex-direction: column;
-	min-height: 100%;
-	background-size: 100vw;
-	background-attachment: fixed;
-	background-position: center;
-	align-items: center;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  background-size: 100vw;
+  background-attachment: fixed;
+  background-position: center;
+  align-items: center;
 }
 
 .landing--header {
-	background-color: #232323;
-	color: #ccc;
-	width: 100%;
-	text-align: center;
-	padding: 1em;
-	box-shadow: 0em 0.1em 0.1em 0em #000;
+  background-color: #232323;
+  color: #ccc;
+  width: 100%;
+  text-align: center;
+  padding: 1em;
+  box-shadow: 0em 0.1em 0.1em 0em #000;
 }
 
 .landing--button--login {
-	margin-top: auto;
-	width: 30%;
+  margin-top: auto;
+  width: 30%;
 }
 
 .landing--button--register {
-	margin-bottom: 9em;
-	margin-top: 2em;
-	width: 30%;
+  margin-bottom: 9em;
+  margin-top: 2em;
+  width: 30%;
 }
 
 .landing--button {
-	padding: 1em;
-	background: #fff;
-	box-shadow: 0.1em 0.1em 0.5em 0.5em #644aff;
-	font-size: medium;
-	font-weight: bold;
-	border-radius: 1em;
+  padding: 1em;
+  background: #fff;
+  box-shadow: 0.1em 0.1em 0.5em 0.5em #644aff;
+  font-size: medium;
+  font-weight: bold;
+  border-radius: 1em;
 }
 
 .landing--button:hover {
-	background: #644aff;
-	color: #fff;
+  background: #644aff;
+  color: #fff;
 }
