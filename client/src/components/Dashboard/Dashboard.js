@@ -15,6 +15,7 @@ const Dashboard = () => {
   const [posts, setPosts] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currPage, setCurrPage] = useState(0);
+  const [keywords, setKeywords] = useState("");
 
   const [posting, setPosting] = useState(false);
 
@@ -53,6 +54,11 @@ const Dashboard = () => {
   };
 
   const loadPosts = async () => {
+    if (keywords.length > 0) {
+      searchPosts();
+      return;
+    }
+
     const payload = {
       method: "GET",
       headers: {
@@ -63,6 +69,27 @@ const Dashboard = () => {
     try {
       const res = await fetch(
         `${process.env.REACT_APP_API_URL}/posts?page=${currPage}`,
+        payload
+      );
+      const posts = await res.json();
+      setPosts(posts);
+      setIsLoading(false);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+  const searchPosts = async () => {
+    const keyQuery = keywords.split(" ").join("%20");
+    const payload = {
+      method: "GET",
+      headers: {
+        "x-access-token": localStorage.getItem("token"),
+      },
+    };
+
+    try {
+      const res = await fetch(
+        `${process.env.REACT_APP_API_URL}/posts?page=${currPage}&q=${keyQuery}`,
         payload
       );
       const posts = await res.json();
