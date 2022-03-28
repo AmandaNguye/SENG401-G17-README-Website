@@ -10,8 +10,10 @@ import "./PostCard.css";
 const PostCard = ({ post, refreshPosts }) => {
   const navigate = useNavigate(); // for title link, comment link, etc.
   const [isCreator, setIsCreator] = useState(false);
-  const [confirmDel, setConfirmDel] = useState(false);
+  // const [confirmDel, setConfirmDel] = useState(false);
   const [editing, setEditing] = useState(false);
+  const [showMore, setShowMore] = useState(false);
+  const isLong = post.content.length > 500;
   const famed = post.famed;
   const lamed = post.lamed;
 
@@ -185,7 +187,10 @@ const PostCard = ({ post, refreshPosts }) => {
           />
         </div>
         <div className="post-content">
-          <p className="post-header">Posted by {post.creator}</p>
+          <p className="post-header">
+            Posted by {post.creator}
+            {post.tag ? <span className="tag"> #{post.tag}</span> : null}
+          </p>
           <a
             className="title"
             onClick={(e) => {
@@ -195,7 +200,17 @@ const PostCard = ({ post, refreshPosts }) => {
           >
             {post.title}
           </a>
-          <p className="post-text">{post.content}</p>
+          <p className="post-text">
+            {showMore ? post.content : post.content.substring(0, 500)}
+            {isLong ? (
+              <button
+                className="show-more"
+                onClick={() => setShowMore(!showMore)}
+              >
+                {showMore ? "See less" : "...See more"}
+              </button>
+            ) : null}
+          </p>
 
           <div className="card-footer">
             <button
@@ -207,7 +222,12 @@ const PostCard = ({ post, refreshPosts }) => {
             >
               Comments
             </button>
-            <button>Share</button>
+            <button
+              type="button"
+              onClick={(e) => console.log(window.location.href)}
+            >
+              Share
+            </button>
             {isCreator ? (
               <div className="user-options">
                 <button
