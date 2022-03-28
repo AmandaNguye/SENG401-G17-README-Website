@@ -13,7 +13,9 @@ import Greeting from "./components/Greeting/Greeting";
 const App = () => {
   return (
     <div className="wrapper">
+      {/*
       <h1>README</h1>
+      */}
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Greeting />} />
