@@ -32,6 +32,19 @@ p {
   color: white;
 }
 
+.tag {
+  font-style: italic;
+}
+
+.show-more {
+  border: none;
+  background: none;
+  color: white;
+  font-size: medium;
+  font-weight: 700;
+  cursor: pointer;
+}
+
 .post-header {
   font-size: 12px;
   color: rgb(180, 180, 180);
@@ -51,7 +64,7 @@ p {
 }
 
 .post-text {
-  max-height: 200px;
+  /* max-height: 200px; */
   overflow: hidden;
   /* overflow-y: ; */
 }
