@@ -8,7 +8,7 @@ export const registerUser = async (req, res) => {
     const takenUsername = await User.findOne({ username: user.username });
     const takenEmail = await User.findOne({ email: user.email });
     if (!req.body.password) {
-      return res.send(404);
+      return res.sendStatus(404);
     }
     if (takenUsername || takenEmail) {
       res.json({ message: "Username or email has already been taken" });
