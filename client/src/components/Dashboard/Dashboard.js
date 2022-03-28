@@ -103,18 +103,20 @@ const Dashboard = () => {
 
   useEffect(() => {
     loadPosts();
-  }, [currPage]);
+  }, [currPage, keywords]);
 
   return isLoggedIn ? (
     <div className="dashboard-wrapper">
-      <NavBar refreshPosts={loadPosts} setKeywords={setKeywords} />
+      <NavBar refreshPosts={loadPosts} searchPosts={searchPosts} setKeywords={setKeywords} onDashboard={true} />
       {isLoading ? <CircularProgress size="40" /> : null}
+       {/*
       <button type="button" onClick={(e) => handleLogout(e)}>
         Log Out
       </button>
       <button type="button" onClick={(e) => handleProfile(e)}>
         Profile
       </button>
+      */}
       {posting ? (
         <PostForm refreshPosts={loadPosts} setForm={setPosting} />
       ) : (
