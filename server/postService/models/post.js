@@ -5,13 +5,11 @@ const postSchema = mongoose.Schema(
   {
     title: {
       type: String,
-      required: true,
-      minLength: 5,
+      required: true
     },
     content: {
       type: String,
-      required: true,
-      minLength: 5,
+      required: true
     },
     tag: {
       type: String,
@@ -21,11 +19,11 @@ const postSchema = mongoose.Schema(
       default: 0,
     },
     famer: {
-      type : [String],
+      type: [String],
       default: [],
     },
     lamer: {
-      type : [String],
+      type: [String],
       default: [],
     }
     ,
@@ -38,7 +36,7 @@ const postSchema = mongoose.Schema(
   { timestamps: true }
 );
 
-postSchema.index({title: 'text', content: 'text', tag: 'text' });
+postSchema.index({ title: 'text', content: 'text', tag: 'text' });
 
 const Post = mongoose.model("Post", postSchema);
 

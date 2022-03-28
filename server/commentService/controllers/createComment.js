@@ -8,6 +8,9 @@ import Comment from "../models/comment.js";
  * @param {*} res
  */
 export const createComment = async (req, res) => {
+	if (!req.params.p_id) {
+		return res.sendStatus(406);
+	}
 	try {
 		const commentInfo = req.body;
 		const post = new Comment({

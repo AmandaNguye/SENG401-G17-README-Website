@@ -118,26 +118,3 @@ export const voteComment = async (req, res) => {
     }
     return res.status(400).send();
 }
-
-
-/**
- * Update comment with the inputted information, only inputted field will be updated
- * @param {*} req content: the updated content
- * @param {*} res 
- */
-export const updateComment = async (req, res) => {
-    const request = req.body;
-    const user = req.user.username;
-    try {
-        var comment = await Comment.findById(req.params.c_id);
-        if (user != comment.creator) {
-            res.status(400).json({ error: "You do not have permission for this change" });
-        }
-        comment.content = request.content;
-        await comment.save();
-        res.status(200).send({ data: comment });
-    } catch {
-        res.status(404).json({ error: "Comment doesn't exist!" });
-    }
-
-}
