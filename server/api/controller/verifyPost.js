@@ -1,6 +1,6 @@
 import got from "got";
 
-const postURL = process.env.POST_URL;
+const postURL = process.env.POST_URL + "/posts";
 
 
 export const verifyPost = async (req, res, next) => {

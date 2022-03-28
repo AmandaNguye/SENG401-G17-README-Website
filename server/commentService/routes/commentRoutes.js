@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 import { getCommentByID, getComments } from "../controllers/getComment.js"
 import { createComment } from "../controllers/createComment.js"
 import { deleteComment } from "../controllers/deleteComment.js"
-import { voteComment, updateComment } from "../controllers/updateComment.js"
+import { voteComment } from "../controllers/updateComment.js"
 
 const router = express.Router();
 
@@ -64,7 +64,5 @@ router.post("/:p_id/comments/", verifyJWTRequired, createComment);
 router.delete("/:p_id/comments/:c_id", verifyJWTRequired, deleteComment);
 
 router.patch("/:p_id/comments/:c_id/vote", verifyJWTRequired, voteComment);
-
-router.patch("/:p_id/comments/:c_id", verifyJWTRequired, updateComment);
 
 export default router;
