@@ -6,6 +6,7 @@ import PostList from "../PostList/PostList";
 import PostForm from "../PostForm/PostForm";
 import CondensedPostForm from "../CondensedPostForm/CondensedPostForm";
 import PageSelector from "../PageSelector/PageSelector";
+import NavBar from "../NavBar/NavBar";
 
 import "./Dashboard.css";
 
@@ -106,6 +107,7 @@ const Dashboard = () => {
 
   return isLoggedIn ? (
     <div className="dashboard-wrapper">
+      <NavBar refreshPosts={loadPosts} setKeywords={setKeywords} />
       {isLoading ? <CircularProgress size="40" /> : null}
       <button type="button" onClick={(e) => handleLogout(e)}>
         Log Out
