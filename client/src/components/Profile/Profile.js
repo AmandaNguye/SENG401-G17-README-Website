@@ -4,7 +4,6 @@ import { CircularProgress } from "@mui/material";
 import PostList from "../PostList/PostList";
 import NavBar from "../NavBar/NavBar";
 
-
 const Profile = () => {
   const navigate = useNavigate();
 
@@ -26,18 +25,6 @@ const Profile = () => {
       )
       .then(() => setIsLoggedIn(true));
   });
-
-  const handleLogout = (e) => {
-    e.preventDefault();
-    localStorage.removeItem("token");
-    setIsLoggedIn(false);
-    navigate("/login");
-  };
-
-  const handleDashboard = (e) => {
-    e.preventDefault();
-    navigate("/dashboard");
-  };
 
   const loadPosts = async () => {
     const payload = {
@@ -64,34 +51,27 @@ const Profile = () => {
   };
 
   useEffect(() => {
-    loadPosts();
+    let isMounted = true;
+    if (isMounted) loadPosts();
+    return () => {
+      isMounted = false;
+    };
   }, [username]);
 
   return isLoggedIn ? (
     <div>
-            <NavBar refreshPosts={loadPosts} setKeywords={setKeywords} onDashboard={false}/>
-
-      {isLoading ? (
-        <CircularProgress size="40" />
-      ) : (
-        <div>
-           {/*
-          <button type="button" onClick={(e) => handleLogout(e)}>
-            Log Out
-          </button>
-          <button type="button" onClick={(e) => handleDashboard(e)}>
-            Dashboard
-          </button>
-           */}
-          <h1>Welcome, {username} </h1>
-          <h2>Your Posts:</h2>
-          <PostList posts={posts} refreshPosts={loadPosts} />
-        </div>
-      )}
+      <NavBar
+        refreshPosts={loadPosts}
+        setKeywords={setKeywords}
+        onDashboard={false}
+      />
+      <div>
+        <h1>Welcome, {username} </h1>
+        <h2>Your Posts:</h2>
+        <PostList posts={posts} refreshPosts={loadPosts} />
+      </div>
     </div>
-  ) : (
-    <CircularProgress size="40" />
-  );
+  ) : null;
 };
 
 export default Profile;

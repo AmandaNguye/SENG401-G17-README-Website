@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
+import { CopyToClipboard } from "react-copy-to-clipboard";
 import { IconButton } from "@chakra-ui/react";
 import { TriangleUpIcon, TriangleDownIcon } from "@chakra-ui/icons";
 
@@ -36,6 +37,12 @@ const PostCard = ({ post, refreshPosts }) => {
           : navigate("/login")
       );
   });
+
+  // const toggleCopy = () => {
+  //   setCopied(true);
+
+  //   setCopied(false);
+  // };
 
   const cancelVote = async (e) => {
     e.preventDefault();
@@ -222,12 +229,15 @@ const PostCard = ({ post, refreshPosts }) => {
             >
               Comments
             </button>
-            <button
-              type="button"
-              onClick={(e) => console.log(window.location.href)}
+            {/* <CopyToClipboard
+              text={`${process.env.REACT_APP_URL}/post-page/${post._id}`}
+              onCopy={() => {
+                setCopied(true);
+              }}
             >
-              Share
-            </button>
+              <button type="button">Share</button>
+            </CopyToClipboard>
+            {copied ? <p className="fade-out">Copied!</p> : null} */}
             {isCreator ? (
               <div className="user-options">
                 <button
