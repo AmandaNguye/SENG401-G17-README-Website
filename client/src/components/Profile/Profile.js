@@ -68,8 +68,13 @@ const Profile = () => {
         onDashboard={false}
       />
       <div>
+<<<<<<< HEAD
         <h1 className="welcome">Welcome, {username} </h1>
         <h2 className="content-h2">Your Posts:</h2>
+=======
+        <h1>Welcome, {username} </h1>
+        <h2>Your Posts:</h2>
+>>>>>>> main
         <PostList posts={posts} refreshPosts={loadPosts} />
       </div>
     </div>
