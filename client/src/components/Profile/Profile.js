@@ -4,6 +4,8 @@ import { CircularProgress } from "@mui/material";
 import PostList from "../PostList/PostList";
 import NavBar from "../NavBar/NavBar";
 
+import "./Profile.css";
+
 const Profile = () => {
   const navigate = useNavigate();
 
@@ -66,8 +68,8 @@ const Profile = () => {
         onDashboard={false}
       />
       <div>
-        <h1>Welcome, {username} </h1>
-        <h2>Your Posts:</h2>
+        <h1 className="welcome">Welcome, {username} </h1>
+        <h2 className="content-h2">Your Posts:</h2>
         <PostList posts={posts} refreshPosts={loadPosts} />
       </div>
     </div>
