@@ -1,7 +1,9 @@
 # SENG401-G17-README-Website
 To access out website: please follow this link: https://read-me-seng401.netlify.app/
 
-## Before running
+Below is steps to run the project locally on your computer. Note: the frontend has been linked to the cloud backend so you do not need to run the backend to run the front end
+
+## Before running the Backend
 
 Make sure you have a .env file in each microservice and populate it with:
 
@@ -37,10 +39,13 @@ COMMENT_URL = http://localhost:5002
 
 JWT_SECRET = (we will get our JWT hash key to make sure everyone has the same key)
 
-## How to run
+## How to run the back end
+1. Run `npm install` in each of the service folder
+3. Run `npm start` in the each of the microservice folder
 
-1. Run the each microservices by using `npm start` in the terminal inside the folder of each microservices. (Will make a script to start all servers at once soon)
+## How to run the front end
 
+1. Run `npm install` in the client folder
 2. Run the client code by using `npm start` in the terminal inside the client folder.
 
 
