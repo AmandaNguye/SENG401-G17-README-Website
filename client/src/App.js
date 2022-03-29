@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 
-import Landing from "./components/Landing Page/Landing";
+// import Landing from "./components/Landing Page/Landing";
 import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
 import Dashboard from "./components/Dashboard/Dashboard";

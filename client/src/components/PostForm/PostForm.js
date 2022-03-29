@@ -51,6 +51,7 @@ const PostForm = ({ refreshPosts, setForm }) => {
             placeholder="Post Title..."
             value={title}
             onChange={(e) => setTitle(e.target.value)}
+            required
           />
         </div>
 
@@ -73,6 +74,7 @@ const PostForm = ({ refreshPosts, setForm }) => {
             placeholder="Content..."
             value={content}
             onChange={(e) => setContent(e.target.value)}
+            required
           />
         </div>
 

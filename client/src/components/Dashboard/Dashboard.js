@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { CircularProgress } from "@mui/material";
 
@@ -102,27 +102,32 @@ const Dashboard = () => {
   };
 
   useEffect(() => {
-    loadPosts();
+    let isMounted = true;
+    if (isMounted) loadPosts();
+    return () => {
+      isMounted = false;
+    };
   }, [currPage, keywords]);
 
   return isLoggedIn ? (
     <div className="dashboard-wrapper">
-      <NavBar refreshPosts={loadPosts} searchPosts={searchPosts} setKeywords={setKeywords} onDashboard={true} />
-      {isLoading ? <CircularProgress size="40" /> : null}
-       {/*
-      <button type="button" onClick={(e) => handleLogout(e)}>
-        Log Out
-      </button>
-      <button type="button" onClick={(e) => handleProfile(e)}>
-        Profile
-      </button>
-      */}
+      <NavBar
+        refreshPosts={loadPosts}
+        searchPosts={searchPosts}
+        setKeywords={setKeywords}
+        onDashboard={true}
+      />
+
       {posting ? (
         <PostForm refreshPosts={loadPosts} setForm={setPosting} />
       ) : (
         <CondensedPostForm setForm={setPosting} />
       )}
-      <PostList posts={posts} refreshPosts={loadPosts} />
+      {isLoading ? (
+        <CircularProgress size="40" />
+      ) : (
+        <PostList posts={posts} refreshPosts={loadPosts} />
+      )}
 
       <div className="dashboard-footer">
         <PageSelector
