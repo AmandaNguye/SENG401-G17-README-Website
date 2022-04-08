@@ -36,7 +36,7 @@ const postSchema = mongoose.Schema(
   { timestamps: true }
 );
 
-postSchema.index({ title: 'text', content: 'text', tag: 'text' });
+postSchema.index({ title: 'text', content: 'text', tag: 'text', creator: 'text' });
 
 const Post = mongoose.model("Post", postSchema);
 
